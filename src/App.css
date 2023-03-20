@@ -1,38 +1,357 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ul {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+li {
+    text-decoration: none;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*NAVBAR Sekmesi CSS*/
+.NavbarDiv {
+    width: 100%;
+    height: 60px;
+    background-color: rgba(244, 197, 85, .9);
+    display: flex;
+    justify-content: space-between;
+    z-index: 999999;
+    position: fixed;
 }
 
-.App-link {
-  color: #61dafb;
+.NavbarHeader {
+    width: 7%;
+    color: white;
+    display: inline-block !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.NavbarPages {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.NavbarInput {
+    padding-right: 20px;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.NavbarButton,
+.NavbarButtonHome {
+    border: none !important;
+    background-color: rgba(244, 196, 85, 0);
+    color: rgba(255, 255, 255, 0.651);
+    width: 150px;
+    height: 40px;
+}
+
+.NavbarButton:hover {
+    border-radius: 5px;
+    transition: .5s;
+    background-color: rgba(250, 220, 149, 0.377);
+    color: rgb(255, 255, 255);
+}
+
+/*FOOTER CSS*/
+.FooterDiv {
+    width: 100%;
+    height: auto;
+    background-color: rgba(211, 211, 211, 0.39);
+    display: flex;
+    justify-content: space-between;
+    position: relative !important;
+    bottom: 0 !important;
+}
+
+.SocialMedia {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    font-size: 30px !important;
+    margin-right: 40px !important;
+}
+
+.Copyright {
+    display: flex;
+    align-items: flex-end;
+}
+
+/*SIGNUP/SİGNIN/PasswordReset Sekmesi CSS'LERİ*/
+
+.kayitOlDiv,
+.girisYapDiv,
+.parolaSifirlaDiv,
+.RestaurantkayitOlDiv {
+    padding-top: 90px;
+    display: flex;
+    justify-content: center;
+    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
+    height: 100vh;
+}
+
+.kayıtOlForm,
+.girisYapForm,
+.parolaSifirlaForm,
+.RestaurantkayıtOlForm {
+    width: 450px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.kayitYapInput,
+.girisYapInput,
+.parolaSifirInput,
+.RestaurantkayitYapInput {
+    width: 100%;
+    margin-top: 30px !important;
+}
+
+.kayitYapRolLabel {
+    margin-left: 210px;
+    margin-top: 10px;
+}
+
+.kayitYapRolCheck {
+    margin-right: 10px;
+}
+
+.kayitYapButton,
+.girisYapButton,
+.parolaSifirButton,
+.IletisimButton,
+.RestaurantkayitYapButton {
+    width: 100%;
+    height: 40px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: rgba(241, 175, 31, 0.801);
+    border: 1px solid rgba(241, 175, 31, 0.801);
+}
+
+.kayitYapButton:hover,
+.girisYapButton:hover,
+.parolaSifirButton:hover,
+.IletisimButton:hover,
+.RestaurantkayitYapButton:hover {
+    transition: .5s;
+    background-color: rgba(241, 175, 31, 0.63);
+}
+
+.kayitYapGirisYapDon,
+.girisYapPunuttum,
+.girisYapKayıtol,
+.girisYapAnasayfa,
+.parolaSifirGirisyap,
+.RestaurantkayitYapGirisYapDon {
+    border: none !important;
+    background-color: white;
+    color: rgba(241, 175, 31, 0.801);
+    font-weight: bold;
+}
+
+.kayitYapGirisYapDon:hover,
+.girisYapPunuttum:hover,
+.girisYapKayıtol:hover,
+.girisYapAnasayfa:hover,
+.parolaSifirGirisyap:hover,
+.RestaurantkayitYapGirisYapDon:hover {
+    transition: .5s;
+    background-color: rgba(233, 233, 233, 0.315);
+    color: rgb(131, 131, 131);
+}
+
+
+/*HAKKIMIZDA SAYFASI CSS*/
+
+.HakkimizdaDiv {
+    width: 100% !important;
+    height: 100vh !important;
+}
+
+.HakkimizdaBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.HakkimizdaUst {
+    width: 1000px;
+    height: 30%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HakkimizdaOrta {
+    width: 900px;
+    height: 30%;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.HakkimizdaOrta ul {
+    list-style: outside;
+}
+
+.HakkimizdaAlt {
+    height: 30%;
+    margin-bottom: 30px;
+}
+
+.HakkimizdaSikcaSorularDiv {
+    width: 800px !important;
+    height: 450px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HakkimizdaSikcaSorularTextarea {
+    width: 90% !important;
+    height: 90% !important;
+}
+
+.HakkimizdaSikcaSorular {
+    background-color: rgba(231, 231, 231, 0.801) !important;
+}
+
+.HakkimizdaSikcaSorular:hover {
+    transition: .5s;
+    background-color: rgba(231, 231, 231, 0.623) !important;
+}
+
+.HakkimizdaSikcaSorularText {
+    color: rgb(0, 0, 0);
+    background-color: rgba(209, 209, 209, 0.801) !important;
+}
+
+/*Iletisim CSS Sayfası*/
+.IletisimDiv {
+    width: 100% !important;
+    height: 93vh !important;
+}
+
+.FormDiv {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60px;
+    padding-left: 50px;
+}
+
+.IletisimForm {
+    width: 550px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.IletisimInput {
+    width: 100%;
+    margin-top: 30px !important;
+}
+
+/*ANASAYFA CSS SEKMESİ*/
+
+.Blog {
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.BlogHeaderDiv {
+    padding-top: 80px;
+
+}
+
+
+
+.BlogAltHeaderDiv {
+    width: 90%;
+    height: 200px;
+    display: flex  !important;
+    justify-content: space-around !important;
+}
+.BlogAltHeaderDiv button{
+    border: none !important;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex  !important;
+}
+.BlogAltHeaderDiv button:hover{
+    transition: .5s;
+    background-color: rgba(65, 120, 221, 0.226);
+}
+.BlogAltHeaderDiv img{
+    object-fit: cover;
+    object-position: 50% 15% ;
+    width: 200px ;
+    height: 200px;
+}
+.AltHeaderPost{
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+
+/*RESTAURANTLAR CSS SEKMESİ*/
+
+
+.RestaurantlarDiv{
+width: 100%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
+}
+.RestaurantlarHeader{
+    padding-top: 80px !important;
+    color:rgb(241, 175, 31) ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.RestaurantFiltrelemeButton{
+    border: none;
+    background-color:rgba(241, 175, 31, 0.808);
+    color: white;
+    width: 190px;
+    height: 40px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.RestaurantFiltrelemeButton:hover{
+    transition: .6s;
+    background-color:rgba(134, 182, 22, 0.808);
+    color: rgba(71, 69, 69, 0.767);
+    
 }
