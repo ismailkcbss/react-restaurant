@@ -1,11 +1,17 @@
 import { useHistory } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
-
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../redux/slice/userSlice";
+import * as storage from '../storage.helper'
 
 
 
 function Navbar() {
+    const userState = useSelector((state) => state.user);
+
+    const dispatch = useDispatch();
+
     const history = useHistory();
     const handleClickAnasayfa = () => {
         history.push('/');
@@ -21,6 +27,12 @@ function Navbar() {
     }
     const handleClickGirisYap = () => {
         history.push('/SignIn');
+    }
+
+    const handleClickCikisYap = () => {
+        dispatch(userActions.logout());
+        storage.setKeyWithValue("token","");
+        history.push('/');
     }
 
     /*başlık Restoran hakkımızda iletişim searchbar girişyapButon */
@@ -56,9 +68,20 @@ function Navbar() {
 
             <div className="NavbarInput">
                 <SearchBar />
-                <button className="NavbarButton" onClick={handleClickGirisYap}>
-                    Giriş Yap
-                </button>
+                {
+                    userState.isAuth ? (
+                        <button className="NavbarButton" onClick={handleClickCikisYap}>
+                            Çıkış Yap
+                        </button>
+                        
+                    ) : (
+                        <button className="NavbarButton" onClick={handleClickGirisYap}>
+                            Giriş Yap
+                        </button>
+                    )
+
+                }
+
             </div>
 
         </div>

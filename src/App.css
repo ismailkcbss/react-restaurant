@@ -124,10 +124,15 @@ li {
     margin-top: 30px !important;
 }
 
-.kayitYapRolLabel {
-    margin-left: 210px;
-    margin-top: 10px;
+
+.kayitYapLabel {
+    padding: 0 50px;
+    padding-top: 10px;
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between;
 }
+
 
 .kayitYapRolCheck {
     margin-right: 10px;
@@ -297,25 +302,29 @@ li {
 .BlogAltHeaderDiv {
     width: 90%;
     height: 200px;
-    display: flex  !important;
+    display: flex !important;
     justify-content: space-around !important;
 }
-.BlogAltHeaderDiv button{
+
+.BlogAltHeaderDiv button {
     border: none !important;
     background-color: rgba(255, 255, 255, 0);
-    display: flex  !important;
+    display: flex !important;
 }
-.BlogAltHeaderDiv button:hover{
+
+.BlogAltHeaderDiv button:hover {
     transition: .5s;
     background-color: rgba(65, 120, 221, 0.226);
 }
-.BlogAltHeaderDiv img{
+
+.BlogAltHeaderDiv img {
     object-fit: cover;
-    object-position: 50% 15% ;
-    width: 200px ;
+    object-position: 50% 15%;
+    width: 200px;
     height: 200px;
 }
-.AltHeaderPost{
+
+.AltHeaderPost {
     display: flex;
     flex-direction: column;
     margin-right: 50px;
@@ -325,33 +334,36 @@ li {
 /*RESTAURANTLAR CSS SEKMESİ*/
 
 
-.RestaurantlarDiv{
-width: 100%;
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
+.RestaurantlarDiv {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
 }
-.RestaurantlarHeader{
+
+.RestaurantlarHeader {
     padding-top: 80px !important;
-    color:rgb(241, 175, 31) ;
+    color: rgb(241, 175, 31);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.RestaurantFiltrelemeButton{
+
+.RestaurantFiltrelemeButton {
     border: none;
-    background-color:rgba(241, 175, 31, 0.808);
+    background-color: rgba(241, 175, 31, 0.808);
     color: white;
     width: 190px;
     height: 40px;
     font-weight: bold;
     margin-top: 30px;
 }
-.RestaurantFiltrelemeButton:hover{
+
+.RestaurantFiltrelemeButton:hover {
     transition: .6s;
-    background-color:rgba(134, 182, 22, 0.808);
+    background-color: rgba(134, 182, 22, 0.808);
     color: rgba(71, 69, 69, 0.767);
-    
+
 }

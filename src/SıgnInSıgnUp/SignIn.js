@@ -1,20 +1,24 @@
-import { Alert, Stack, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { userActions } from "../redux/slice/userSlice";
+import* as storage from "../storage.helper"
+import { axiosInstance, setApiToken } from "../axios.util";
+
 
 function KullaniciSignIn() {
 
   const initialForm = {
-    girisYapEmail: "",
-    girisYapSifre: "",
+    loginEmail: "",
+    loginPassword: "",
   }
 
   const [form, setForm] = useState({ ...initialForm });
+  const [userData, setUserData] = useState([]);
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleChangeText = (value, key) => {
     setForm({
       ...form,
@@ -22,49 +26,27 @@ function KullaniciSignIn() {
     })
   }
 
-  // veri okuma
-  //const userState = useSelector((state) => state.user); // store.js reducer
 
-  // useEffect(() => {
-  //   const login = async () => {
-  //     try {
-  //       const { data } = await axios.post("http://localhost:8000/auth/login", {
-  //         email: form.girisYapEmail,
-  //         password: form.girisYapSifre,
-  //       });
-
-  //       data = {
-  //         user: {
-  //           id: "",
-  //           email: "",
-  //         },
-  //         token: "",
-  //       }
-
-  //       dispatch(userActions.login(data));
-  //     } catch (error) {
-  //       <Stack sx={{ width: '100%' }} spacing={2}>
-  //         <Alert variant="filled" severity="error" autoHideDuration={6000}>
-  //           E-Posta Adresiniz veya Parolanız Hatalı
-  //         </Alert>
-  //       </Stack>
-  //     }
-  //   }
-  //   login();
-  //   if (userState.isAuth) {
-  //     console.log("user : ", userState);
-  //   }
-  //   console.log("use Effect calisti");
-  // }, [userState.id]);
-
-
-
-  const handleClick = (event) => {
+  const login = async (event) => {
     event.preventDefault();
+    try {
+      const { data } = await axiosInstance.post("/auth/login", {
+        email: form.loginEmail,
+        password: form.loginPassword,
+      });
 
+      storage.setKeyWithValue("token",data.token);
+      setApiToken(data.token);
+      dispatch(userActions.login(data))
+      history.push('/');
+    } catch (error) {
+      console.log(error.response.data.message);
+     // console.log(error);
+    }
     setForm({ ...initialForm });
-    history.push('/');
+
   }
+
 
 
 
@@ -85,28 +67,28 @@ function KullaniciSignIn() {
       <form className="girisYapForm">
         <h5>Giriş Yapmak İçin Bilgilerinizi Giriniz</h5>
 
-        <TextField 
-        autoFocus 
-        id="email" 
-        autoComplete="email" 
-        label="E-mail / Telefon Numarası" 
-        variant="outlined" 
-        className="girisYapInput" 
-        value={form.girisYapEmail} 
-        onChange={(e) => handleChangeText(e.target.value, "girisYapEmail")} 
+        <TextField
+          autoFocus
+          id="email"
+          autoComplete="email"
+          label="E-mail / Telefon Numarası"
+          variant="outlined"
+          className="girisYapInput"
+          value={form.loginEmail}
+          onChange={(e) => handleChangeText(e.target.value, "loginEmail")}
         />
-        <TextField 
-        id="password" 
-        type="password" 
-        autoComplete="current-password" 
-        label="Parola" 
-        variant="outlined" 
-        className="girisYapInput" 
-        value={form.girisYapSifre} 
-        onChange={(e) => handleChangeText(e.target.value, "girisYapSifre")} 
+        <TextField
+          id="password"
+          type="password"
+          autoComplete="current-password"
+          label="Parola"
+          variant="outlined"
+          className="girisYapInput"
+          value={form.loginPassword}
+          onChange={(e) => handleChangeText(e.target.value, "loginPassword")}
         />
 
-        <button className="girisYapButton" onClick={handleClick} >Giriş Yap</button>
+        <button className="girisYapButton" onClick={login} >Giriş Yap</button>
 
         <button className="girisYapKayıtol" onClick={handleKayitOlDon} >Kayıt Ol</button>
         <button className="girisYapPunuttum" onClick={handlePunuttumDon} >Parolamı Unuttum</button>

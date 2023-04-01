@@ -1,9 +1,12 @@
 import { TextField } from "@mui/material";
-import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { axiosInstance, setApiToken } from "../axios.util";
 import { userActions } from "../redux/slice/userSlice";
+import* as storage from "../storage.helper"
+
+
 
 function KullaniciSignUp() {
 
@@ -45,28 +48,30 @@ function KullaniciSignUp() {
     }
   }
 
-  const handleKayitOlClick = async (event) => {
+  const register = async (event) => {
     event.preventDefault();
-    if (rol === 1) {
-      history.push('/RestaurantRegistration');
+    try {
+      const { data } = await axiosInstance.post("/auth/register", {
+        fullName: form.kayitYapAd + " " + form.kayitYapSoyad,
+        email: form.kayitYapMail,
+        phone: form.kayitYapTelefon,
+        password: form.kayitYapParola,
+        role: rol === 0 ? 'customer' : 'restaurant',
+      });
+      if (rol === 1) {
+        // bilgileri doldur
+        dispatch(userActions.login(data));
+        setApiToken(data.token);
+        storage.setKeyWithValue("token",data.token);
+        history.push('/RestaurantRegistration');
+      }
+      else {
+        history.push('/SignIn');
+      }
+      setForm({ ...initialForm });
+    } catch (error) {
+      console.log(error);
     }
-    else {
-      // try {
-      //   const { data } = await axios.post("http://localhost:8000/auth/login", {
-      //     fullName: form.kayitYapAd + " " + form.kayitYapSoyad,
-      //     email: form.kayitYapMail,
-      //     phone: form.kayitYapTelefon,
-      //     password: form.kayitYapParola,
-      //   });
-
-      //   dispatch(userActions.login(data));
-      // } catch (error) {
-      //   // alertify
-      // }
-
-      history.push('/');
-    }
-    setForm({ ...initialForm });
   }
 
 
@@ -83,7 +88,7 @@ function KullaniciSignUp() {
       <form className="kayıtOlForm" >
         <h5>Kayıt Olmak Aşağıdaki Bilgileri Doldurunuz</h5>
         <TextField
-          
+
           autoFocus
           id="Ad"
           autoComplete="outlined"
@@ -135,7 +140,7 @@ function KullaniciSignUp() {
 
         <label className="kayitYapRolLabel"><input className="kayitYapRolCheck" type="checkbox" onClick={tiklama} />Restoran İşletmecisiyim</label>
 
-        <button className="kayitYapButton" onClick={handleKayitOlClick} >Kayıt Ol</button>
+        <button className="kayitYapButton" type="submit" onClick={register} >Kayıt Ol</button>
 
         <button className="kayitYapGirisYapDon" onClick={handleGirisYapDon} >Giriş Yap Sayfasına Geri Git</button>
 

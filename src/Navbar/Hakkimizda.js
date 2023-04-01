@@ -1,7 +1,6 @@
 import SikcaSorulanSorular from "./SikcaSorulanSorular";
 import Navbar from './Navbar';
 import Footer from '../Footer/Footer';
-import HakkimizdaCarousel from './HakkimizdaCarousel';
 
 
 function Hakkimizda() {
@@ -19,7 +18,7 @@ function Hakkimizda() {
                         daha detaylı bilgileri sıkça sorulan sorular kısmında bulabilirsiniz.
                     </p>
                     <br /><br /><br />
-                    <HakkimizdaCarousel />
+                    
                 </div>
                 <div className="HakkimizdaOrta">
                     <div className="HakkimizdaOrtaText">

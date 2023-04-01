@@ -8,8 +8,10 @@ const userSlice = createSlice({
             id:"",
             fullName:"",
             email:"",
+            password:"",
             phone:"",
             role:"customer",
+            isRestaurant:false,
         },
         token:"",
     },
@@ -25,6 +27,7 @@ const userSlice = createSlice({
                 id:"",
                 fullName:"",
                 email:"",
+                password:"",
                 phone:"",
                 role:"customer"  
             };
