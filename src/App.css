@@ -96,20 +96,22 @@ li {
 .kayitOlDiv,
 .girisYapDiv,
 .parolaSifirlaDiv,
-.RestaurantkayitOlDiv {
+.NewPasswordDiv,
+.RestaurantkayitOlDiv{
     padding-top: 90px;
     display: flex;
     justify-content: center;
-    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
+    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
     height: 100vh;
 }
 
 .kayıtOlForm,
 .girisYapForm,
 .parolaSifirlaForm,
-.RestaurantkayıtOlForm {
+.RestaurantkayıtOlForm,
+.NewPasswordForm {
     width: 450px;
-    height: 700px;
+    height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -366,4 +368,22 @@ li {
     background-color: rgba(134, 182, 22, 0.808);
     color: rgba(71, 69, 69, 0.767);
 
+}
+
+/*MY RESTAURANT CSS*/
+
+
+.MyRestaurantDiv {
+    height: 100vh;
+    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
+    
+}
+.MyRestaurantHeader p {
+    font-size:20px;
+    font-Weight:bold; 
+}
+.MyRestaurantBody{
+    width: 100%;
+    height: 93vh;
+    padding-top: 90px;
 }

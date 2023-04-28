@@ -1,9 +1,6 @@
 import { TextField } from "@mui/material";
-import axios from "axios";
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useState} from 'react';
 import { useHistory } from "react-router-dom";
-import { userActions } from "../redux/slice/userSlice";
 
 function KullaniciParolaSifirlama() {
 
@@ -23,7 +20,6 @@ function KullaniciParolaSifirlama() {
         event.preventDefault();
 
 
-
         setForm({ ...initialForm });
         history.push('/');
     }
@@ -35,41 +31,6 @@ function KullaniciParolaSifirlama() {
     const handleGirisYapDon = () => {
         history.push('/SignIn');
     }
-
-    // veri okuma
-   // const userState = useSelector((state) => state.user); // store.js reducer
-
-    // veri değiştirme
-    // const dispatch = useDispatch();
-    
-    // useEffect(() => {
-    //     const login = async() => {
-    //         try {
-    //             // axios la veri okudum
-    //             const { data } = await axios.post("http://localhost:8000/auth/login", {
-    //                 email: form.parolaSifirlamaMail,
-    //               });
-
-    //      {/*const*/} data = {
-    //                 user: {
-    //                     id: "",
-    //                     email: "",
-    //                 },
-    //                 token: "",
-    //             }
-    //             dispatch(userActions.login(data));
-    //         } catch (error) {
-    //             // alertifyjs 
-    //         }
-    //     }
-    //     login();
-    //     if (userState.isAuth) {
-    //         console.log("user : ", userState);
-    //     }
-    //     console.log("use Effect calisti");
-    // }, [userState.id]);
-
-
 
 
     return (
@@ -89,7 +50,7 @@ function KullaniciParolaSifirlama() {
                     onChange={(e) => handleChangeText(e.target.value, "parolaSifirlamaMail")}
                 />
 
-                <button onClick={handleParolaClick} className="parolaSifirButton">Şifreyi Sıfırla</button>
+                <button onClick={handleParolaClick} className="parolaSifirButton">E-Posta Gönder</button>
 
                 <button className="parolaSifirGirisyap" onClick={handleGirisYapDon} >Giriş Yap Sayfasına Dön</button>
 

@@ -1,11 +1,10 @@
 import { TextField } from "@mui/material";
-import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { userActions } from "../redux/slice/userSlice";
-import* as storage from "../storage.helper"
+import * as storage from "../storage.helper"
 import { axiosInstance, setApiToken } from "../axios.util";
+import { useState } from "react";
 
 
 function KullaniciSignIn() {
@@ -16,7 +15,6 @@ function KullaniciSignIn() {
   }
 
   const [form, setForm] = useState({ ...initialForm });
-  const [userData, setUserData] = useState([]);
 
   const dispatch = useDispatch();
   const handleChangeText = (value, key) => {
@@ -35,14 +33,14 @@ function KullaniciSignIn() {
         password: form.loginPassword,
       });
 
-      storage.setKeyWithValue("token",data.token);
+      storage.setKeyWithValue("token", data.token);
       setApiToken(data.token);
-      dispatch(userActions.login(data))
+      dispatch(userActions.login(data));
       history.push('/');
     } catch (error) {
       console.log(error.response.data.message);
-     // console.log(error);
     }
+
     setForm({ ...initialForm });
 
   }

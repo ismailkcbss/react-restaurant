@@ -13,6 +13,9 @@ import * as storage from './storage.helper'
 import { useDispatch, useSelector } from 'react-redux';
 import { axiosInstance, setApiToken } from './axios.util';
 import { userActions } from './redux/slice/userSlice';
+import NewPassword from './SıgnInSıgnUp/NewPassword';
+import MyRestaurant from './Restoranlar/MyRestaurant';
+import ProtectedRoute from './SıgnInSıgnUp/ProtectedRoute';
 
 function App() {
 
@@ -21,13 +24,13 @@ function App() {
     const dispatch = useDispatch();
     // Procted Route
 
-    const getCurrentUser = async() => {
+    const getCurrentUser = async () => {
         const token = storage.getValueByKey("token");
-        if(token){
+        if (token) {
             setApiToken(token);
             try {
-            const {data} = await axiosInstance.get('/user/me');
-            dispatch(userActions.login({user:data,token}))
+                const { data } = await axiosInstance.get('/user/me');
+                dispatch(userActions.login({ user: data, token }))
             } catch (error) {
                 console.log(error);
             }
@@ -36,8 +39,8 @@ function App() {
 
     useEffect(() => {
         // sayfa refresh edilince kullanıcı var mı yok mu bilgisi gidicek o yüzden localdeki token ı alalım ve userı isteyelim
-        if(!userState.isAuth) getCurrentUser();
-    },[userState.isAuth])
+        if (!userState.isAuth) getCurrentUser();
+    }, [userState.isAuth])
 
     return (
         <BrowserRouter>
@@ -46,11 +49,13 @@ function App() {
                 <Route exact path='/SignIn' component={SignIn} />
                 <Route exact path='/SignUp' component={SignUp} />
                 <Route exact path='/PasswordReset' component={PasswordReset} />
+                <Route exact path='/NewPassword' component={NewPassword} />
                 <Route exact path='/Iletisim' component={Iletisim} />
                 <Route exact path='/Restoranlar' component={Restoranlar} />
                 <Route exact path='/Hakkimizda' component={Hakkimizda} />
                 <Route exact path='/RestaurantRegistration' component={RestaurantRegistration} />
-               
+                <ProtectedRoute exact path='/MyRestaurant' component={MyRestaurant} />
+
             </Switch>
         </BrowserRouter>
     )

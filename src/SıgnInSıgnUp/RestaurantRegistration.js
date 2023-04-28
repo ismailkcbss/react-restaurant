@@ -1,5 +1,5 @@
-import { Checkbox, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Checkbox, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { axiosInstance } from "../axios.util";
@@ -31,49 +31,15 @@ function RestaurantRegistration() {
     }
     const history = useHistory();
 
-    const [countWifi, setCountWifi] = useState(0);
-    const [countTypeSteak, setCountTypeSteak] = useState(0);
-    const [countTypeCafe, setCountTypeCafe] = useState(0);
-    const [isTypeSteak, setisTypeSteak] = useState(0);
-    const [isTypeCafe, setisTypeCafe] = useState(0);
     const [isWifi, setIsWifi] = useState(false);
+    const [isType, setisType] = useState("");
 
 
-    const wifi = () => {
-        setCountWifi(countWifi + 1);
-        if (countWifi % 2 === 0) {
-           // console.log("wifi var");
-            return setIsWifi(1);
-        }
-        else {
-           // console.log("wifi yok");
-            return setIsWifi(0);
-        }
-
+    const handleChangeType = (event) => {
+        setisType(event.target.value);
     }
 
-    
-    const steak = () => {
-        setCountTypeSteak(countTypeSteak + 1);
-        if (countTypeSteak % 2 === 0) {
-            console.log(countTypeSteak);
-            return setisTypeSteak(true);
-        }
-        else {
-            return setisTypeSteak(false);
-        }
 
-    }
-    const cafe = () => {
-        setCountTypeCafe(countTypeCafe + 1);
-        if (countTypeCafe % 2 === 0) {
-            return setisTypeCafe(true);
-        }
-        else {
-            return setisTypeCafe(false);
-        }
-
-    }
 
     const register = async (event) => {
         event.preventDefault();
@@ -84,12 +50,12 @@ function RestaurantRegistration() {
                 address: form.RestaurantAdress,
                 email: form.RestaurantEmail,
                 description: form.RestaurantDesc,
-                isWifi: isWifi === 1 ? true : false,
-                type: isTypeSteak === true && isTypeCafe === false ? 1 : 0, // her ikiside false olabilir bu yuzden bir seçim yapmasını zorlamamız gerek bunu nasıl yapıcaz ?
+                isWifi: isWifi,
+                type: Number(isType),
             });
             dispatch(restaurantActions.add(data));
             history.push('/SignIn');
-            setForm({ ...initialForm }); // kullanıcı çıkış yaptığı zaman restaurant bilgileri de sıfırlanıyor mu ona kayıt oldu mu 
+            setForm({ ...initialForm });
         } catch (error) {
             console.log(error);
         }
@@ -164,13 +130,23 @@ function RestaurantRegistration() {
                 />
                 <div className="kayitYapLabel">
                     <div>
-                        {/* <label className="kayitYapWifiLabel"><input className="kayitYapRolCheck" type="checkbox" onClick={wifi} />Wifi var</label> */}
-                        <Checkbox value={isWifi} onChange={(e)=> setIsWifi(e.target.checked) }  />
+                        <FormControl>
+                            <FormLabel id="demo-controlled-radio-buttons-group">Restaurant Türünü Seçiniz</FormLabel>
+                            <RadioGroup
+                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                name="controlled-radio-buttons-group"
+                                value={isType}
+                                onChange={handleChangeType}
+                            >
+                                <FormControlLabel value="0" control={<Radio />} label="Steak" />
+                                <FormControlLabel value="1" control={<Radio />} label="Cafe" />
+                            </RadioGroup>
+                        </FormControl>
                     </div>
                     <div>
-                        <label className="kayitYapRadioLabel" style={{ marginRight: "30px" }}><input className="kayitYapRolCheck" type="checkbox" onClick={steak} />Steak</label>
-                        <label className="kayitYapRadioLabel"><input className="kayitYapRolCheck" type="checkbox" onClick={cafe} />Cafe</label>
+                        <Checkbox value={isWifi} onChange={(e) => setIsWifi(e.target.checked)} /> Wifi Var
                     </div>
+
                 </div>
                 <button type="submit" className="RestaurantkayitYapButton" onClick={register} >Kayıt Ol</button>
                 <button className="RestaurantkayitYapGirisYapDon" onClick={handleGirisYapDon} >Giriş Yap Sayfasına Geri Git</button>

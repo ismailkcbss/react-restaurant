@@ -8,6 +8,7 @@ import * as storage from '../storage.helper'
 
 
 function Navbar() {
+    
     const userState = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
@@ -18,6 +19,9 @@ function Navbar() {
     }
     const handleClickRestoran = () => {
         history.push('/Restoranlar');
+    }
+    const handleClickMyRestoran = () => {
+        history.push('/MyRestaurant');
     }
     const handleClickHakkimizda = () => {
         history.push('/Hakkimizda');
@@ -31,11 +35,9 @@ function Navbar() {
 
     const handleClickCikisYap = () => {
         dispatch(userActions.logout());
-        storage.setKeyWithValue("token","");
+        storage.setKeyWithValue("token", "");
         history.push('/');
     }
-
-    /*başlık Restoran hakkımızda iletişim searchbar girişyapButon */
 
     return (
 
@@ -43,16 +45,27 @@ function Navbar() {
             <div className="NavbarHeader">
                 <button onClick={handleClickAnasayfa} className="NavbarButtonHome" style={{ paddingTop: '5px' }}>
                     <FamilyRestroomIcon />
-                    <h6>My Restoran</h6>
+                    <h6>My Restaurant</h6>
                 </button>
             </div>
 
             <ul className="NavbarPages">
-                <li>
-                    <button className="NavbarButton" onClick={handleClickRestoran}>
-                        Restoranlar
-                    </button>
-                </li >
+                {
+                    userState.user.role === 'restaurant' ? (
+                        <li>
+                            <button className="NavbarButton" onClick={handleClickMyRestoran}>
+                                MyRestaurant
+                            </button>
+                        </li >
+                    ) : (
+                        <li>
+                            <button className="NavbarButton" onClick={handleClickRestoran}>
+                                Restoranlar
+                            </button>
+                        </li >
+                    )
+                }
+
                 <li>
                     <button className="NavbarButton" onClick={handleClickHakkimizda}>
                         Hakkımızda
@@ -73,7 +86,7 @@ function Navbar() {
                         <button className="NavbarButton" onClick={handleClickCikisYap}>
                             Çıkış Yap
                         </button>
-                        
+
                     ) : (
                         <button className="NavbarButton" onClick={handleClickGirisYap}>
                             Giriş Yap

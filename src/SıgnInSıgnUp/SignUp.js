@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Checkbox, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -138,7 +138,7 @@ function KullaniciSignUp() {
           onChange={(e) => onChangeText(e.target.value, "kayitYapParola")}
         />
 
-        <label className="kayitYapRolLabel"><input className="kayitYapRolCheck" type="checkbox" onClick={tiklama} />Restoran İşletmecisiyim</label>
+        <label className="kayitYapRolLabel"><Checkbox className="kayitYapRolCheck" type="checkbox" onClick={tiklama} />Restoran İşletmecisiyim</label>
 
         <button className="kayitYapButton" type="submit" onClick={register} >Kayıt Ol</button>
 
