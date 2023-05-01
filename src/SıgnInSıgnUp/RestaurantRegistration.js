@@ -53,7 +53,7 @@ function RestaurantRegistration() {
                 isWifi: isWifi,
                 type: Number(isType),
             });
-            dispatch(restaurantActions.add(data));
+            dispatch(restaurantActions.set(data));
             history.push('/SignIn');
             setForm({ ...initialForm });
         } catch (error) {

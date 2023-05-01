@@ -16,10 +16,10 @@ const restaurantSlice = createSlice({
     },
     reducers:{
         // redux a ait stateleri güncellemek için yazılacak fonksiyonlar;
-        add:(state,action) => {
-            state.restaurant = {...action.payload.restaurant};
+        set:(state,action) => {
+            state.restaurant = {...action.payload};
         },
-        set:(state) => {
+        setInitial:(state) => {
             state.restaurant = {
                 id:"",
                 fullName:"",

@@ -80,7 +80,12 @@ function Navbar() {
             </ul>
 
             <div className="NavbarInput">
-                <SearchBar />
+                {userState.user.role === 'customer' ?(
+                    <SearchBar />
+                ):(
+                    ''
+                )}
+
                 {
                     userState.isAuth ? (
                         <button className="NavbarButton" onClick={handleClickCikisYap}>

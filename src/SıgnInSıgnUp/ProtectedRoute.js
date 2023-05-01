@@ -7,8 +7,6 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
 
     const userState = useSelector((state) => state.user);
 
-//SAYFAYI YENİLEYİNCE ANASAYFAYA ATIYOR TEKRAR ONU NASIL DÜZELTECEM.
-
     return (
         <Route {...rest} render={(props) => {
             if (userState.user.role === 'restaurant') {

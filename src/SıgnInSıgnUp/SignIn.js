@@ -5,6 +5,7 @@ import { userActions } from "../redux/slice/userSlice";
 import * as storage from "../storage.helper"
 import { axiosInstance, setApiToken } from "../axios.util";
 import { useState } from "react";
+import alertify from "alertifyjs";
 
 
 function KullaniciSignIn() {
@@ -27,18 +28,22 @@ function KullaniciSignIn() {
 
   const login = async (event) => {
     event.preventDefault();
+    if(form.loginEmail.trim() === "" || form.loginPassword.trim() ===""){
+      alertify.error("Bilgilerinizi Doldurunuz Lütfen");
+      return;
+    }
     try {
       const { data } = await axiosInstance.post("/auth/login", {
         email: form.loginEmail,
         password: form.loginPassword,
       });
-
       storage.setKeyWithValue("token", data.token);
       setApiToken(data.token);
       dispatch(userActions.login(data));
       history.push('/');
+      alertify.success('Giriş Başarılı');
     } catch (error) {
-      console.log(error.response.data.message);
+      alertify.error(error.response.data.message);
     }
 
     setForm({ ...initialForm });

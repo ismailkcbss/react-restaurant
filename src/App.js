@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import SignIn from './SıgnInSıgnUp/SignIn';
 import SignUp from './SıgnInSıgnUp/SignUp';
 import Iletisim from './Navbar/Iletisim';
@@ -13,15 +13,18 @@ import * as storage from './storage.helper'
 import { useDispatch, useSelector } from 'react-redux';
 import { axiosInstance, setApiToken } from './axios.util';
 import { userActions } from './redux/slice/userSlice';
-import NewPassword from './SıgnInSıgnUp/NewPassword';
+import forgotPassword from './SıgnInSıgnUp/forgotPassword';
 import MyRestaurant from './Restoranlar/MyRestaurant';
 import ProtectedRoute from './SıgnInSıgnUp/ProtectedRoute';
+import PasswordResetDesc from './SıgnInSıgnUp/PasswordResetDesc';
 
 function App() {
 
-    const userState = useSelector((state) => state.user)
+    const userState = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
+    const history = useHistory();
+
     // Procted Route
 
     const getCurrentUser = async () => {
@@ -40,6 +43,7 @@ function App() {
     useEffect(() => {
         // sayfa refresh edilince kullanıcı var mı yok mu bilgisi gidicek o yüzden localdeki token ı alalım ve userı isteyelim
         if (!userState.isAuth) getCurrentUser();
+
     }, [userState.isAuth])
 
     return (
@@ -49,7 +53,8 @@ function App() {
                 <Route exact path='/SignIn' component={SignIn} />
                 <Route exact path='/SignUp' component={SignUp} />
                 <Route exact path='/PasswordReset' component={PasswordReset} />
-                <Route exact path='/NewPassword' component={NewPassword} />
+                <Route exact path='/forgotPassword' component={forgotPassword} />
+                <Route exact path='/PasswordResetDesc' component={PasswordResetDesc} />
                 <Route exact path='/Iletisim' component={Iletisim} />
                 <Route exact path='/Restoranlar' component={Restoranlar} />
                 <Route exact path='/Hakkimizda' component={Hakkimizda} />

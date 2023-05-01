@@ -1,7 +1,10 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
+import { axiosInstance } from '../axios.util';
+import alertify from "alertifyjs";
+import { restaurantActions } from '../redux/slice/restaurantSlice';
 
 
 
@@ -9,7 +12,24 @@ import Footer from '../Footer/Footer';
 export default function MyRestaurant() {
 
   const userState = useSelector((state) => state.user);
+
   const restaurantState = useSelector((state) => state.restaurant);
+
+  const dispatch = useDispatch();
+
+
+  const RestaurantMe = async () => {
+    try {
+      const { data } = await axiosInstance.get("/restaurant/me");
+      dispatch(restaurantActions.set(data));
+    } catch (error) {
+      alertify.error(error.response.data.message);
+    }
+
+  }
+  useEffect(() => {
+    RestaurantMe();
+  }, []);
 
   return (
     <div className='MyRestaurantDiv'>
@@ -18,7 +38,7 @@ export default function MyRestaurant() {
 
         <div className='MyRestaurantHeader'>
           {userState.user.role === 'restaurant' ? (
-            <p>Restaurantına Hoş Geldin &emsp; {userState.user.fullName}</p>
+            <p>Restaurantına Hoş Geldin &emsp; {userState.user.fullName.toUpperCase()}</p>
           ) : (
             <p>Restaurant Sahibi Değilsiniz !!!</p>
           )
@@ -26,7 +46,10 @@ export default function MyRestaurant() {
 
         </div>
         <div className='MyRestaurantContainer'>
-          {restaurantState.restaurant.description}
+          {
+            restaurantState.restaurant.description
+          }
+
         </div>
 
       </div>

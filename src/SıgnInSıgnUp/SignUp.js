@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { axiosInstance, setApiToken } from "../axios.util";
 import { userActions } from "../redux/slice/userSlice";
 import* as storage from "../storage.helper"
+import alertify from "alertifyjs";
 
 
 
@@ -66,11 +67,12 @@ function KullaniciSignUp() {
         history.push('/RestaurantRegistration');
       }
       else {
+        alertify.success('Kayıt Başarılı');
         history.push('/SignIn');
       }
       setForm({ ...initialForm });
     } catch (error) {
-      console.log(error);
+      alertify.error(error.response.data.message);
     }
   }
 

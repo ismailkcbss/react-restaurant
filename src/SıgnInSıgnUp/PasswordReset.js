@@ -1,6 +1,10 @@
 import { TextField } from "@mui/material";
-import { useState} from 'react';
+import { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { axiosInstance } from "../axios.util";
+import { useDispatch } from "react-redux";
+import { userActions } from "../redux/slice/userSlice";
+import alertify from "alertifyjs";
 
 function KullaniciParolaSifirlama() {
 
@@ -16,21 +20,32 @@ function KullaniciParolaSifirlama() {
         });
     }
 
-    const handleParolaClick = (event) => {
-        event.preventDefault();
-
-
-        setForm({ ...initialForm });
-        history.push('/');
-    }
-
-
 
     const history = useHistory();
+    
+    const dispatch = useDispatch();
+
 
     const handleGirisYapDon = () => {
         history.push('/SignIn');
     }
+
+    const PasswordReset = async (event) => {
+        event.preventDefault();
+        try {
+            const { data } = await axiosInstance.post("/user/forgot-password", {
+                email: form.parolaSifirlamaMail,
+            });
+             dispatch(userActions.login(data));
+            history.push('/PasswordResetDesc');
+        } catch (error) {
+            alertify.error(error.response.data.message);
+        }
+
+
+        setForm({ ...initialForm });
+    }
+
 
 
     return (
@@ -50,7 +65,7 @@ function KullaniciParolaSifirlama() {
                     onChange={(e) => handleChangeText(e.target.value, "parolaSifirlamaMail")}
                 />
 
-                <button onClick={handleParolaClick} className="parolaSifirButton">E-Posta Gönder</button>
+                <button onClick={PasswordReset} className="parolaSifirButton">E-Posta Gönder</button>
 
                 <button className="parolaSifirGirisyap" onClick={handleGirisYapDon} >Giriş Yap Sayfasına Dön</button>
 
