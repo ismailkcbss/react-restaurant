@@ -31,9 +31,8 @@ function NewPassword() {
             setApiToken("");
             storage.setKeyWithValue("token", "");
             const token = location.search.split("=")[1];
-            setApiToken(token);
-            if (location.search.split("=")[1]) {
-                return;
+            if (token) {
+                setApiToken(token);
             }
             else {
                 history.push("/");

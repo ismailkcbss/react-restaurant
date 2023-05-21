@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as storage from './storage.helper'
+
 const axiosInstance = axios.create({
   headers: {
     "Access-Control-Allow-Origin": "*",

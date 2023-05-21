@@ -14,8 +14,9 @@ function MainFeaturedPost(props) {
       sx={{
         position: 'relative',
         backgroundColor: 'grey.800',
+        height: 300,
         color: '#fff',
-        mb: 4,
+        mb: 8,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
@@ -49,7 +50,7 @@ function MainFeaturedPost(props) {
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href="#">
+            <Link variant="subtitle1" href='#' >
               {post.linkText}
             </Link>
           </Box>

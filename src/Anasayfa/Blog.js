@@ -5,51 +5,84 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
-import SliderCarousel from './SliderCarousel';
+import SliderCarousel from './SliderCarouselPost';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
+import IletisimForm1 from '../img/IletisimForm1.jpg';
+import KapakFoto1 from '../img/KapakFoto1.jpg';
+import RestaurantListe1 from '../img/RestaurantListe1.jpg';
+import HasanUsta1 from '../img/HasanUsta1.png';
+import ZekiUsta1 from '../img/ZekiUsta1.jpg';
+import EyvanKebap1 from '../img/EyvanKebap1.png';
+
+
 
 
 const mainFeaturedPost = {
-  title: 'Title of a longer featured blog post',
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random',
-  imageText: 'main image description',
-  linkText: 'Continue reading…',
+  title: 'MyRestaurant',
+  image: KapakFoto1,
+  imageText: 'MyRestaurant Foto1',
 
 };
 const featuredPosts = [
   {
-    title: 'Featured post',
-    date: 'Nov 12',
+    id: 1,
+    title: 'Bizimle İletişime Geçin',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageLabel: 'Image Text',
+      'Fikirlerinizi ve şikayetlerinizi bizimle iletişime geçerek paylaşabilirsiniz.',
+    image: IletisimForm1,
+    imageLabel: 'IletisimForm',
   },
   {
-    title: 'Post title',
-    date: 'Nov 11',
+    id: 2,
+    title: 'Restaurant',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageLabel: 'Image Text',
+      'Dilediğiniz Restaurantı Bulmak için Arama Yapabilirsiniz',
+    image: RestaurantListe1,
+    imageLabel: 'RestaurantListe',
   },
 ];
+const sliderCarouselPost = [
+  {
+    id: 1,
+    title: 'Hasan Usta Kebap Salonu',
+    description: 'Herkesi Restaurantlarımıza Bekliyoruz',
+    image: HasanUsta1,
+    imageText: 'HasanUsta',
+    linkText:'Restaurantı Görüntülemek İçin Tıklayınız',
+  },
+  {
+    id: 2,
+    title: 'Zeki Ustanın Yeri',
+    description: 'Herkesi Restaurantlarımıza Bekliyoruz',
+    image: ZekiUsta1,
+    imageText: 'ZekiUsta',
+    linkText:'Restaurantı Görüntülemek İçin Tıklayınız',
+  },
+  {
+    id: 3,
+    title: 'Eyvan Kebap Salonu',
+    description: 'Herkesi Restaurantlarımıza Bekliyoruz',
+    image: EyvanKebap1,
+    imageText: 'EyvanKebap',
+    linkText:'Restaurantı Görüntülemek İçin Tıklayınız',
+  },
+]
 
 
 
 const theme = createTheme();
 
 export default function Blog() {
+
+
   return (
     <div>
 
       <Navbar />
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container maxWidth="xl" sx={{pt:10}}>
+        <Container maxWidth="xl" sx={{ pt: 10 }}>
           <main>
             <MainFeaturedPost post={mainFeaturedPost} />
             <Grid container spacing={4}>
@@ -57,11 +90,16 @@ export default function Blog() {
                 <FeaturedPost key={post.title} post={post} />
               ))}
             </Grid>
-            <SliderCarousel />
+            <Grid container spacing={4}>
+              {sliderCarouselPost.map((post) => (
+                <SliderCarousel post={post} />
+              ))}
+            </Grid>
+            
           </main>
         </Container>
       </ThemeProvider>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

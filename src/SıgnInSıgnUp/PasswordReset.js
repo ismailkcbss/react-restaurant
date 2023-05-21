@@ -25,7 +25,6 @@ function KullaniciParolaSifirlama() {
     
     const dispatch = useDispatch();
 
-
     const handleGirisYapDon = () => {
         history.push('/SignIn');
     }
