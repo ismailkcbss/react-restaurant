@@ -7,16 +7,16 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
-  backgroundColor: 'rgb(249, 222, 159)',
+  backgroundColor: 'rgba(85, 103, 119, 0.684)',
   '&:hover': {
-    backgroundColor: 'rgb(247, 214, 135)',
+    backgroundColor: 'rgba(85, 103, 119, 0.684)',
     transition:'.5s'
   },
   borderRadius:10,
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    backgroundColor: 'rgb(249, 222, 159)',
+    backgroundColor: 'rgba(85, 103, 119, 0.684)',
     width: 'auto',
   },
 }));
@@ -33,14 +33,14 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'black',
+  color: 'white',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    borderRadius:'10',
+    borderRadius:'1',
     [theme.breakpoints.up('sm')]: {
       width: '20ch',
       '&:focus': {
@@ -62,7 +62,7 @@ function SearchBar() {
 
   return (
     <Box >
-      <AppBar position="static" sx={{borderRadius:'500px'}}>
+      <AppBar position="static" sx={{borderRadius:'10px'}}>
         <Search value={searchText} onChange={searchTextChange}>
           <SearchIconWrapper>
             <SearchIcon />

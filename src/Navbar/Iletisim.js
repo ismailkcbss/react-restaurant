@@ -35,7 +35,7 @@ function Iletisim() {
         <div className="IletisimDiv">
             <Navbar />
             <div className="FormDiv">
-                <h1 style={{ color: "rgba(241, 175, 31, 0.801)", fontSize: "70px" }}>Bize Ulaşın</h1>
+                <h1 style={{ color: "rgba(44, 83, 122, 0.829)", fontSize: "70px" }}>Bize Ulaşın</h1>
                 <p>Aşağıdaki Formu Doldurarak Bize Mesaj Gönderebilirsin</p>
                 <form className="IletisimForm">
                     <TextField

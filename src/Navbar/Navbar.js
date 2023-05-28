@@ -8,7 +8,7 @@ import * as storage from '../storage.helper'
 
 
 function Navbar() {
-    
+
     const userState = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function Navbar() {
         history.push('/');
     }
     const handleClickRestoran = () => {
-        history.push('/Restoranlar');
+        history.push('/Restaurantlar');
     }
     const handleClickMyRestoran = () => {
         history.push('/MyRestaurant');
@@ -60,7 +60,7 @@ function Navbar() {
                     ) : (
                         <li>
                             <button className="NavbarButton" onClick={handleClickRestoran}>
-                                Restoranlar
+                                Restaurant
                             </button>
                         </li >
                     )
@@ -80,9 +80,9 @@ function Navbar() {
             </ul>
 
             <div className="NavbarInput">
-                {userState.user.role === 'customer' ?(
+                {userState.user.role === 'customer' ? (
                     <SearchBar />
-                ):(
+                ) : (
                     ''
                 )}
 

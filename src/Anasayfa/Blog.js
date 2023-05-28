@@ -84,15 +84,15 @@ export default function Blog() {
         <CssBaseline />
         <Container maxWidth="xl" sx={{ pt: 10 }}>
           <main>
-            <MainFeaturedPost post={mainFeaturedPost} />
+            <MainFeaturedPost postMain={mainFeaturedPost} />
             <Grid container spacing={4}>
               {featuredPosts.map((post) => (
-                <FeaturedPost key={post.title} post={post} />
+                <FeaturedPost key={post.id} post={post} />
               ))}
             </Grid>
             <Grid container spacing={4}>
               {sliderCarouselPost.map((post) => (
-                <SliderCarousel post={post} />
+                <SliderCarousel key={post.id} post={post} />
               ))}
             </Grid>
             

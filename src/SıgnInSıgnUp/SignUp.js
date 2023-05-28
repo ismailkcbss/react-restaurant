@@ -61,7 +61,6 @@ function KullaniciSignUp() {
       });
       if (rol === 1) {
         // bilgileri doldur
-        dispatch(userActions.login(data));
         setApiToken(data.token);
         storage.setKeyWithValue("token",data.token);
         history.push('/RestaurantRegistration');
@@ -139,7 +138,6 @@ function KullaniciSignUp() {
           value={form.kayitYapParola}
           onChange={(e) => onChangeText(e.target.value, "kayitYapParola")}
         />
-
         <label className="kayitYapRolLabel"><Checkbox className="kayitYapRolCheck" type="checkbox" onClick={tiklama} />Restoran İşletmecisiyim</label>
 
         <button className="kayitYapButton" type="submit" onClick={register} >Kayıt Ol</button>
