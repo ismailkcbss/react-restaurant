@@ -1,9 +1,7 @@
 
 import { useHistory } from 'react-router-dom';
-import RestaurantCard from '../img/RestaurantCard1.jpg'
 
 function RestaurantState(props) {
-
 
     const { post } = props;
 
@@ -16,7 +14,7 @@ function RestaurantState(props) {
     return (
         <div className="RestaurantStateDiv">
             <div className="RestaurantImg">
-                <img src={RestaurantCard} alt="resim1" />
+                <img src={post.img} alt="Img" />
             </div>
             <div className="RestaurantTitle">
                 {post.name}

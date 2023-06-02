@@ -10,6 +10,7 @@ const restaurantSlice = createSlice({
             address:"",
             email:"",
             description:"",
+            img:"",
             isWifi:false,
             type:0,
         },
@@ -22,10 +23,12 @@ const restaurantSlice = createSlice({
         setInitial:(state) => {
             state.restaurant = {
                 id:"",
-                fullName:"",
+                name:"",
+                city:"",
+                address:"",
                 email:"",
-                password:"",
-                phone:"",
+                description:"",
+                img:"",
             };
         }
 

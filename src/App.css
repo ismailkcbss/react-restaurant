@@ -73,6 +73,84 @@ li {
     color: rgb(255, 255, 255);
 }
 
+/*SEARCH BAR CSS*/
+.SearchbarDiv {
+    width: 370px;
+    height: 50px;
+    line-height: 50px;
+    margin: 5% auto;
+}
+
+.SearchbarDiv input[type="text"] {
+    width: 100%;     /*220px*/
+    height: 35px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    color: #ffffffd0;
+    padding: 10px;
+   /* transition: width .4s ease-in-out;*/
+}
+
+.SearchbarDiv input[type="text"]::placeholder {
+    color: #ffffffb0;
+}
+
+.SearchbarDiv input[type="text"]:focus {
+    outline: none;
+    width: 100%;
+}
+
+/* .SearchbarDiv input[type="text"]:not(:focus) .autoCompleteItems{
+display: none;
+} */
+
+.autoComplete {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.autoCompleteItems {
+    border-bottom: 1px solid #e6e6e6;
+    cursor: pointer;
+    color: rgba(17, 62, 104, 0.678);
+    font-weight: bold;
+}
+
+.SearchItemButton {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(17, 62, 104, 0.678);
+    font-weight: bold;
+    border: none;
+}
+.SearchItemButton:hover{
+    transition: .5s;
+    background-color: #f1f1f1b2;
+    color: rgba(17, 62, 104, 0.911)
+}
+
+.SearchItemImage{
+    flex-basis: 36%;
+}
+.SearchItemImage img {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    height: 80px;
+}
+.SearchItemName{
+    text-align: start;
+    flex-basis: 55%;
+    padding-right: 5px;
+}
 /*FOOTER CSS*/
 .FooterDiv {
     width: 100%;
@@ -80,8 +158,6 @@ li {
     background-color: rgba(17, 62, 104, 0.884);
     display: flex;
     justify-content: space-between;
-    position: relative !important;
-    bottom: 0 !important;
 }
 
 .SocialMedia {
@@ -194,7 +270,24 @@ li {
     transition: .5s;
     color: rgba(44, 83, 122, 0.548);
 }
+/*Restaurant Registration CSS*/
 
+.RestaurantRegistredFileButton {
+    width: 250px !important;
+    color: green;
+}
+
+.RestaurantkayıtOlForm input[type="file"]::file-selector-button {
+    margin: 15px 5px 15px 0px;
+    background-color: rgba(44, 83, 122, 0.829);
+    width: 130px;
+}
+
+.RestaurantkayıtOlForm input[type=file]::file-selector-button:hover {
+    transition: .9s;
+    background-color: rgba(44, 83, 122, 0.616);
+    cursor: pointer;
+}
 
 /*HAKKIMIZDA SAYFASI CSS*/
 
@@ -385,6 +478,7 @@ li {
     flex-wrap: wrap;
     width: 1400px;
     height: auto;
+    line-height: 50px;
     background-color: rgba(228, 228, 228, 0.233);
     margin-top: 50px;
     border-radius: 3px;
@@ -397,16 +491,22 @@ li {
     border-radius: 5px;
     background-color: rgba(44, 83, 122, 0.829);
     box-shadow: 4px 4px 4px rgba(139, 139, 139, 0.74);
+    height: auto;
+    
 }
 
 .RestaurantImg {
     width: 250px;
     height: 330px;
+    line-height: 330px;
+    border-radius: 5px;
 }
 
 .RestaurantImg img {
     width: 100%;
-    height: 320px;
+    height: auto;
+    text-align: center;
+    border-radius: 5px;
 }
 
 .RestaurantTitle {
@@ -436,18 +536,28 @@ li {
 /*MY RESTAURANT CSS*/
 
 .MyRestaurantDiv {
-    height: 100vh;
+    width: 100%;
+    height: auto;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
+
+}
+
+.MyRestaurantBody {
+    width: 100%;
+    height: auto;
+    padding-top: 90px;
 }
 
 .MyRestaurantHeader {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;
 }
 
 .MyRestaurantHeader p {
     font-size: 20px;
     font-Weight: bold;
+    font-family: cursive;
 }
 
 .MyRestaurantHeaderButton {
@@ -463,15 +573,27 @@ li {
     background-color: rgba(44, 83, 122, 0.616);
 }
 
-.MyRestaurantBody {
-    width: 100%;
-    height: 93vh;
-    padding-top: 90px;
+.MyRestaurantContainer{
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
+
+.MyRestaurantMenu{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    height: auto;
+}
 /*RESTAURANT MENU CSS*/
 
 .RestaurantMenuDiv {
+
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -479,46 +601,57 @@ li {
     align-items: center;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
 }
-.RestaurantMenuHeader{
+
+.RestaurantMenuHeader {
     padding-top: 80px !important;
 }
-.RestaurantMenuBody{
-width: 100%;
-height: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+
+.RestaurantMenuBody {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
-.RestaurantMenuInput{
+
+.RestaurantMenuInput {
     width: 350px;
     margin-top: 20px !important;
 }
-.RestaurantMenuFileButton{
+
+.RestaurantMenuFileButton {
     width: 250px !important;
     color: green;
 }
+
 .RestaurantMenuBody input[type="file"]::file-selector-button {
-    margin: 15px 5px 15px 0px ;
+    margin: 15px 5px 15px 0px;
     background-color: rgba(44, 83, 122, 0.829);
     width: 130px;
 }
-.RestaurantMenuBody input[type=file]::file-selector-button:hover{
+
+.RestaurantMenuBody input[type=file]::file-selector-button:hover {
     transition: .9s;
     background-color: rgba(44, 83, 122, 0.616);
     cursor: pointer;
 }
-.RestaurantMenuSubmitButton{
+
+.RestaurantMenuSubmitButton {
     background-color: rgba(44, 122, 70, 0.829);
     width: 130px;
 }
-.RestaurantMenuSubmitButton:hover{
+
+.RestaurantMenuSubmitButton:hover {
     transition: .9s;
     background-color: rgba(44, 122, 70, 0.582);
 }
+
 /*RESTAURANT Menu STATE*/
-.RestaurantMenuStateDiv{
+.RestaurantMenuStateDiv {
+    width: 210px;
+    height: auto;
     margin: 20px;
     padding: 15px;
     border: 2px solid rgba(44, 83, 122, 0.829);
@@ -526,24 +659,32 @@ align-items: center;
     background-color: rgba(44, 83, 122, 0.829);
     box-shadow: 4px 4px 4px rgba(139, 139, 139, 0.74);
 }
-.RestaurantMenuStateImg{
-    width: 150px;
-    height: 180px;
+
+.RestaurantMenuStateImg {
+    width: 100%;
+    height: 120px;
+    background-position: center;
 }
-.RestaurantMenuStateImg img{
+
+.RestaurantMenuStateImg img {
     width: 100%;
     height: 100%;
+    text-align: center;
 }
-.RestaurantMenuStateTitle{
-font-size: 20px;
-font-weight: bold;
 
+.RestaurantMenuStateTitle {
+    font-size: 15px;
 }
+.RestaurantMenuStateFiyat {
+    color: rgb(46, 46, 46);
+    font-size: 15px;
+}
+
 /*RESTAURANT VİEW CSS */
 
 .RestaurantViewDiv {
     width: 99vw !important;
-    height: 100vh !important;
+    height: auto ;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 
 }
@@ -559,6 +700,7 @@ font-weight: bold;
 
 .RestaurantViewHeader {
     font-size: 40px;
+    font-family: cursive;
 }
 
 .RestaurantViewBody {
@@ -571,18 +713,21 @@ font-weight: bold;
 .RestaurantViewBodySol {
     margin: 10px;
     padding: 10px;
-    background-color: blue;
+    background-color: rgba(92, 92, 168, 0.589);
 }
 
 .RestaurantViewBodySag {
     margin: 10px;
     padding: 10px;
-    background-color: red;
+    background-color: rgba(179, 79, 79, 0.555);
 }
 
-.RestaurantViewFooter {
+.RestaurantViewMenu {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+
 }
 
 .RestaurantViewStateDiv {
