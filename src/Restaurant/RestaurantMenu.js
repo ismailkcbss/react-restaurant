@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { storage } from '../Firebase/Firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import alertify from "alertifyjs";
 import { axiosInstance } from "../axios.util";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,15 +23,19 @@ function RestaurantMenu() {
 
     const [form, setForm] = useState({ ...initialForm });
     const [image, setImage] = useState(null);
-
-
+    const [restaurantMenu, setRestaurantMenu] = useState([]);
+    const [foto, setFoto] = useState(null);
     const restaurantState = useSelector((state) => state.restaurant);
 
+
     const restaurantId = restaurantState.restaurant.id;
+    console.log(restaurantId);
 
 
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const { id } = useParams();
 
     const handleChangeText = (value, key) => {
         setForm({
@@ -43,6 +47,14 @@ function RestaurantMenu() {
     const handleImageChange = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
+        }
+    }
+
+    const handleSaveClick = () => {
+        if(id){
+            RestaurantMenuPut();
+        } else {
+            handleSubmit();
         }
     }
 
@@ -58,6 +70,7 @@ function RestaurantMenu() {
                 img: result,
                 price: Number(form.MenuPrice),
             })
+            setFoto(result)
             dispatch(restaurantMenuActions.set(data));
             alertify.success("Restaurant Menu Kaydedildi");
             history.push('/MyRestaurant');
@@ -67,10 +80,59 @@ function RestaurantMenu() {
 
     };
 
+    const RestaurantMenuPut = async () => {
+        try {
+            let newFotoUrl = null;
+            if (image) {
+                const imageRef = ref(storage, uuidv4());
+                await uploadBytes(imageRef, image);
+                newFotoUrl = await getDownloadURL(imageRef);
+                setFoto(newFotoUrl);
+            }
+            const { data } = await axiosInstance.put(`/menu/${id}`,{
+                restaurantId: restaurantId,
+                title: form.MenuTitle,
+                description: form.MenuDesc,
+                img: newFotoUrl || foto,
+                price: Number(form.MenuPrice),
+            })
+            dispatch(restaurantMenuActions.set(data));
+        } catch (error) {
+            alertify.error(error.response.data.message);
+        }
+    }
+
+    const RestaurantMenuGet = async () => {
+        if(id){
+            try {
+                const { data } = await axiosInstance.get(`/menu/${id}`)
+                setForm(
+                    {
+                        MenuTitle: data.title,
+                        MenuDesc: data.description,
+                        MenuPrice: data.price
+                    }
+                )
+                setFoto(data.img)
+                dispatch(restaurantMenuActions.set(data));
+            } catch (error) {
+                alertify.error(error.response.data.message);
+            }
+    
+        }
+    }
+
+    useEffect(() => {
+        RestaurantMenuGet();
+    }, [])
+
 
     return (
         <div className="RestaurantMenuDiv">
             <Navbar />
+            {
+                foto ? <img src={foto} alt="resim" /> : null
+            }
 
             <div className="RestaurantMenuHeader">Restaurant Menu Bilgilerinizi Doldurunuz</div>
             <div className="RestaurantMenuBody">
@@ -107,7 +169,7 @@ function RestaurantMenu() {
 
                 <input className="RestaurantMenuFileButton" type="file" onChange={handleImageChange} />
 
-                <button className="RestaurantMenuSubmitButton" type="submit" onClick={handleSubmit}>Kaydet</button>
+                <button className="RestaurantMenuSubmitButton" type="submit" onClick={handleSaveClick}>Kaydet</button>
             </div>
             <Footer />
         </div>

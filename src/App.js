@@ -63,6 +63,7 @@ function App() {
                 <Route exact path='/RestaurantRegistration' component={RestaurantRegistration} />
                 <Route exact path='/RestaurantView/:id' component={RestaurantView} />
                 <Route exact path='/RestaurantMenu' component={RestaurantMenu} />
+                <Route exact path='/RestaurantMenu/:id' component={RestaurantMenu} />
                 <ProtectedRoute exact path='/MyRestaurant' component={MyRestaurant} />
 
             </Switch>

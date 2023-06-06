@@ -1,4 +1,3 @@
-import { useHistory } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import RestaurantState from './RestaurantState';
 import { axiosInstance } from "../axios.util";
@@ -7,6 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import RestaurantFiltreModal from "./RestaurantFiltreModal";
 
 
 
@@ -17,17 +17,17 @@ function Restaurantlar() {
 
   const [page, setPage] = useState(1);
   const [count, setCount] = useState("");
+  const [visible, setVisible] = useState(false);
 
 
   const Restaurant = async () => {
     try {
-      const { data } = await axiosInstance.get(`/restaurant?limit=8&offset=${(page-1)*8}`);
+      const { data } = await axiosInstance.get(`/restaurant?limit=8&offset=${(page - 1) * 8}`);
       setRestaurantList(data.rows);
       setCount(data.count);
     } catch (error) {
       alertify.error(error.response.data.message);
     }
-
   }
 
   useEffect(() => {
@@ -35,15 +35,12 @@ function Restaurantlar() {
   }, [page]);
 
 
-  const handlePageNum = (event,value) => {
+  const handlePageNum = (event, value) => {
     setPage(value);
   }
 
-
-  const history = useHistory();
-
   const handleClickFiltre = () => {
-    
+    setVisible(true);
   }
 
 
@@ -56,6 +53,18 @@ function Restaurantlar() {
         <h5>Aşağıda istediğiniz restauranta ulaşabilirsiniz</h5>
         <button className="RestaurantFiltrelemeButton" onClick={handleClickFiltre}>Filtreleme Yap</button>
       </div>
+
+      {visible ? (
+        <div className="FiltrelemeModal">
+          <div className="FiltrelemeModalPost">
+            <RestaurantFiltreModal setRestaurantList={setRestaurantList} setVisible={setVisible} />
+          </div>
+        </div>
+      ) : (
+        null
+      )
+
+      }
       <div className="RestaurantlarBody">
         {restaurantList.map((post) => (
           <RestaurantState key={post.id} post={post} />

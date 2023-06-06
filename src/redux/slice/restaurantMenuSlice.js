@@ -22,10 +22,10 @@ const restaurantMenuSlice = createSlice({
                 id: "",
                 title: "",
                 description: "",
-                image: "",
+                img: "",
                 price: "",
             };
-        }
+        },
 
     }
 });

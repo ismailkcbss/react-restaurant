@@ -56,7 +56,6 @@ export default function MyRestaurant() {
     RestaurantMe();
   }, []);
 
-
   useEffect(() => {
     if (restaurantId) {
       RestaurantMenuPost();

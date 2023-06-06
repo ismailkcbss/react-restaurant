@@ -29,7 +29,7 @@ li {
 .NavbarDiv {
     width: 100%;
     height: 60px;
-    background-color: rgba(17, 62, 104, 0.884);
+    background-color: rgba(245, 194, 29, 0.822);
     display: flex;
     justify-content: space-between;
     z-index: 999999;
@@ -82,7 +82,8 @@ li {
 }
 
 .SearchbarDiv input[type="text"] {
-    width: 100%;     /*220px*/
+    width: 100%;
+    /*220px*/
     height: 35px;
     border-radius: 5px;
     background-color: transparent;
@@ -90,7 +91,7 @@ li {
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
     color: #ffffffd0;
     padding: 10px;
-   /* transition: width .4s ease-in-out;*/
+    /* transition: width .4s ease-in-out;*/
 }
 
 .SearchbarDiv input[type="text"]::placeholder {
@@ -131,26 +132,31 @@ display: none;
     font-weight: bold;
     border: none;
 }
-.SearchItemButton:hover{
+
+.SearchItemButton:hover {
     transition: .5s;
     background-color: #f1f1f1b2;
     color: rgba(17, 62, 104, 0.911)
 }
 
-.SearchItemImage{
+.SearchItemImage {
     flex-basis: 36%;
 }
+
 .SearchItemImage img {
     display: flex;
     justify-content: center;
     width: 85%;
     height: 80px;
+    object-fit: contain;
 }
-.SearchItemName{
+
+.SearchItemName {
     text-align: start;
     flex-basis: 55%;
     padding-right: 5px;
 }
+
 /*FOOTER CSS*/
 .FooterDiv {
     width: 100%;
@@ -270,6 +276,7 @@ display: none;
     transition: .5s;
     color: rgba(44, 83, 122, 0.548);
 }
+
 /*Restaurant Registration CSS*/
 
 .RestaurantRegistredFileButton {
@@ -479,7 +486,7 @@ display: none;
     width: 1400px;
     height: auto;
     line-height: 50px;
-    background-color: rgba(228, 228, 228, 0.233);
+    background-color: rgba(255, 255, 255, 0.233);
     margin-top: 50px;
     border-radius: 3px;
 }
@@ -487,14 +494,18 @@ display: none;
 .RestaurantStateDiv {
     margin: 20px;
     padding: 15px;
-    border: 2px solid rgba(44, 83, 122, 0.829);
+    border: 2px solid rgba(235, 235, 235, 0.322);
     border-radius: 5px;
-    background-color: rgba(44, 83, 122, 0.829);
-    box-shadow: 4px 4px 4px rgba(139, 139, 139, 0.74);
+    background-color: rgba(255, 255, 255, 0.829);
     height: auto;
-    
-}
 
+}
+.RestaurantStateDiv:hover{
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    background-color:rgba(235, 235, 235, 0.322) ;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
+}
 .RestaurantImg {
     width: 250px;
     height: 330px;
@@ -531,6 +542,78 @@ display: none;
     transition: .5s;
     background-color: rgba(44, 83, 122, 0.616);
     color: rgb(255, 255, 255);
+}
+
+
+.FiltrelemeModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.FiltrelemeModalPost {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 40%;
+    height: 60%;
+    background-color: rgb(65, 65, 65);
+}
+
+.FiltreModalDiv {
+    width: 100%;
+}
+
+.FiltreModalHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.FiltreModalHeader p {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.FiltreModalButton {
+    width: 30px;
+    height: 30px;
+    border: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.FiltreModalButton:hover {
+    transition: .2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.712);
+}
+
+.FiltreModalContainer {
+    color: white;
+}
+
+.FiltreModalFooter {}
+
+.FiltreModalFooterButton {
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.466);
+}
+
+.FiltreModalFooterButton:hover {
+    transition: .2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.747);
 }
 
 /*MY RESTAURANT CSS*/
@@ -573,7 +656,7 @@ display: none;
     background-color: rgba(44, 83, 122, 0.616);
 }
 
-.MyRestaurantContainer{
+.MyRestaurantContainer {
     width: 90%;
     height: auto;
     display: flex;
@@ -582,7 +665,7 @@ display: none;
 }
 
 
-.MyRestaurantMenu{
+.MyRestaurantMenu {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -590,6 +673,7 @@ display: none;
     width: 80%;
     height: auto;
 }
+
 /*RESTAURANT MENU CSS*/
 
 .RestaurantMenuDiv {
@@ -661,30 +745,52 @@ display: none;
 }
 
 .RestaurantMenuStateImg {
-    width: 100%;
+    width: 120px;
     height: 120px;
     background-position: center;
 }
 
 .RestaurantMenuStateImg img {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+    width: 120px;
+    height: 120px;
+    object-fit: cover !important;
 }
 
 .RestaurantMenuStateTitle {
     font-size: 15px;
 }
+
 .RestaurantMenuStateFiyat {
     color: rgb(46, 46, 46);
     font-size: 15px;
+}
+
+.RestaurantMenuStatePut {
+    width: 100%;
+    height: 32px;
+    line-height: 35px;
+}
+
+.MenuButton {
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    background-color: rgb(28, 156, 28);
+    border: none;
+    box-shadow: 1px 1px 1px 1px rgba(19, 131, 19, 0.719);
+}
+
+.MenuButton:hover {
+    transition: .5s ease-in-out;
+    background-color: rgba(28, 156, 28, 0.575);
 }
 
 /*RESTAURANT VİEW CSS */
 
 .RestaurantViewDiv {
     width: 99vw !important;
-    height: auto ;
+    height: auto;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 
 }
