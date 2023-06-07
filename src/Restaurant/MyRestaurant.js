@@ -20,7 +20,7 @@ export default function MyRestaurant() {
 
   const [restaurantMenuList, setRestaurantMenuList] = useState([]);
 
-  const [restaurantId, setRestaurantId] = useState("");
+  const [restaurant, setRestaurant] = useState("");
 
 
 
@@ -30,7 +30,7 @@ export default function MyRestaurant() {
   const RestaurantMe = async () => {
     try {
       const { data } = await axiosInstance.get("/restaurant/me");
-      setRestaurantId(data);
+      setRestaurant(data);
       dispatch(restaurantActions.set(data));
     } catch (error) {
       alertify.error(error.response.data.message);
@@ -45,7 +45,7 @@ export default function MyRestaurant() {
 
   const RestaurantMenuPost = async () => {
     try {
-      const { data } = await axiosInstance.get(`/menu/restaurant/${restaurantId.id}`);
+      const { data } = await axiosInstance.get(`/menu/restaurant/${restaurant.id}`);
       setRestaurantMenuList(data.rows);
     } catch (error) {
       alertify.error(error.response.data.message);
@@ -57,10 +57,10 @@ export default function MyRestaurant() {
   }, []);
 
   useEffect(() => {
-    if (restaurantId) {
+    if (restaurant) {
       RestaurantMenuPost();
     }
-  }, [restaurantId])
+  }, [restaurant])
 
 
   return (
@@ -79,11 +79,11 @@ export default function MyRestaurant() {
         </div>
         <div className='MyRestaurantContainer'>
           {
-           <img src={restaurantState.restaurant.img}/> 
+            <img src={restaurantState.restaurant.img} />
           }
         </div>
         <br /><br /><br />
-        <p style={{fontSize:"20px",fontWeight:"bold",fontFamily:"cursive",paddingLeft:"10px"}}>Menu</p>
+        <p style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "cursive", paddingLeft: "10px" }}>Menu</p>
         <div className='MyRestaurantMenu'>
           {
             restaurantMenuList.map((item) => (

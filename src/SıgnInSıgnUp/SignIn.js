@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { FormControl, InputLabel, OutlinedInput, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActions } from "../redux/slice/userSlice";
@@ -6,7 +6,10 @@ import * as storage from "../storage.helper"
 import { axiosInstance, setApiToken } from "../axios.util";
 import { useState } from "react";
 import alertify from "alertifyjs";
-
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 
 function KullaniciSignIn() {
 
@@ -16,6 +19,14 @@ function KullaniciSignIn() {
   }
 
   const [form, setForm] = useState({ ...initialForm });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const dispatch = useDispatch();
   const handleChangeText = (value, key) => {
@@ -28,7 +39,7 @@ function KullaniciSignIn() {
 
   const login = async (event) => {
     event.preventDefault();
-    if(form.loginEmail.trim() === "" || form.loginPassword.trim() ===""){
+    if (form.loginEmail.trim() === "" || form.loginPassword.trim() === "") {
       alertify.error("Bilgilerinizi Doldurunuz Lütfen");
       return;
     }
@@ -80,17 +91,28 @@ function KullaniciSignIn() {
           value={form.loginEmail}
           onChange={(e) => handleChangeText(e.target.value, "loginEmail")}
         />
-        <TextField
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          label="Parola"
-          variant="outlined"
-          className="girisYapInput"
-          value={form.loginPassword}
-          onChange={(e) => handleChangeText(e.target.value, "loginPassword")}
-        />
-
+        <FormControl sx={{ mt: 4, width: '52.5ch' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Parola</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            value={form.loginPassword}
+            onChange={(e) => handleChangeText(e.target.value, "loginPassword")}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
         <button className="girisYapButton" onClick={login} >Giriş Yap</button>
 
         <button className="girisYapKayıtol" onClick={handleKayitOlDon} >Kayıt Ol</button>

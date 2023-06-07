@@ -13,18 +13,17 @@ function RestaurantState(props) {
 
     return (
         <div className="RestaurantStateDiv">
-            <div className="RestaurantImg">
-                <img src={post.img} alt="Img" />
-            </div>
-            <div className="RestaurantTitle">
-                {post.name}
-            </div>
-            <div className="RestaurantButton">
-                <button onClick={handleClick}>
-                    Restauranta git
-                </button>
-            </div>
-        </div>
+            <button className='RestaurantButton' onClick={handleClick}>
+                <div className="RestaurantImg">
+                    <img src={post.img} alt="Img" />
+                </div>
+                <div className="RestaurantTitle">
+                    {post.name}
+                </div>
+
+            </button>
+        </div >
+
     );
 }
 

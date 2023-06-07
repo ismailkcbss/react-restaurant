@@ -1,9 +1,13 @@
-import { TextField } from "@mui/material";
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 import alertify from "alertifyjs";
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from "react-router-dom";
 import { axiosInstance, setApiToken } from "../axios.util";
 import * as storage from "../storage.helper"
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 
 function NewPassword() {
     const history = useHistory();
@@ -15,6 +19,14 @@ function NewPassword() {
     }
 
     const [form, setForm] = useState({ ...initialForm });
+
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const handleChangeText = (value, key) => {
         setForm({
@@ -39,7 +51,7 @@ function NewPassword() {
             }
         }, []
     )
-    
+
 
 
     const forgotPassword = async (event) => {
@@ -72,27 +84,50 @@ function NewPassword() {
 
                 <h6>Yeni Bir Şifre Yazınız</h6>
 
-                <TextField
-                    autoFocus
-                    id="password1"
-                    autoComplete="current-password"
-                    type="password"
-                    label="Parola"
-                    variant="outlined"
-                    className="parolaSifirInput"
-                    value={form.newPassword1}
-                    onChange={(e) => handleChangeText(e.target.value, "newPassword1")}
-                />
-                <TextField
-                    id="password2"
-                    autoComplete="current-password"
-                    type="password"
-                    label="Parola Tekrar"
-                    variant="outlined"
-                    className="parolaSifirInput"
-                    value={form.newPassword2}
-                    onChange={(e) => handleChangeText(e.target.value, "newPassword2")}
-                />
+                <FormControl sx={{ mt: 4, width: '52.5ch' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">Parola</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={form.newPassword1}
+                        onChange={(e) => handleChangeText(e.target.value, "newPassword1")}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+                </FormControl>
+                <FormControl sx={{ mt: 4, width: '52.5ch' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">Parola</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={form.newPassword2}
+                        onChange={(e) => handleChangeText(e.target.value, "newPassword2")}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+                </FormControl>
 
                 <button onClick={forgotPassword} className="parolaSifirButton">Yeni Şifre Oluştur</button>
 

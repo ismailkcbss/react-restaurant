@@ -29,7 +29,7 @@ li {
 .NavbarDiv {
     width: 100%;
     height: 60px;
-    background-color: rgba(245, 194, 29, 0.822);
+    background-color: rgba(44, 83, 122, 0.829);
     display: flex;
     justify-content: space-between;
     z-index: 999999;
@@ -160,10 +160,15 @@ display: none;
 /*FOOTER CSS*/
 .FooterDiv {
     width: 100%;
-    height: auto;
-    background-color: rgba(17, 62, 104, 0.884);
+    height: 150px;
+    background-color: rgba(44, 83, 122, 0.705);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    bottom: 0;
+    clear: both;
 }
 
 .SocialMedia {
@@ -171,6 +176,7 @@ display: none;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .icon {
@@ -451,7 +457,7 @@ display: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg);
+   
 }
 
 .RestaurantlarHeader {
@@ -495,16 +501,19 @@ display: none;
     margin: 20px;
     padding: 15px;
     border: 2px solid rgba(235, 235, 235, 0.322);
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.829);
-    height: auto;
-
+    height: auto;;
 }
 .RestaurantStateDiv:hover{
-    transition: .3s ease-in-out;
+    transition: .5s ease-in-out;
     cursor: pointer;
     background-color:rgba(235, 235, 235, 0.322) ;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 2.5px 2.5px 2.5px 2.5px rgba(0, 0, 0, 0.5);
+}
+.RestaurantStateDiv:hover .RestaurantTitle{
+    transition: .3s ease-in-out;
+    color:rgba(173, 173, 173, 0.836) ;
 }
 .RestaurantImg {
     width: 250px;
@@ -523,23 +532,23 @@ display: none;
 .RestaurantTitle {
     font-size: 20px;
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.938);
+    color: rgba(173, 173, 173, 0.384);
     text-align: center;
     margin-bottom: 10px;
 }
 
-.RestaurantButton button {
+.RestaurantStateDiv button {
     width: 100%;
     line-height: 30px;
     border: none;
-    background-color: rgba(44, 83, 122, 0.829);
-    color: rgba(209, 209, 209, 0.801);
+    background-color: rgba(255, 255, 255, 0.493);
+    color: rgba(136, 136, 136, 0.801);
     font-weight: bold;
     border-radius: 3px;
 }
 
 .RestaurantButton button:hover {
-    transition: .5s;
+    transition: .5s ease-in-out;
     background-color: rgba(44, 83, 122, 0.616);
     color: rgb(255, 255, 255);
 }
@@ -552,16 +561,17 @@ display: none;
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.288);
+
 }
 
 .FiltrelemeModalPost {
     display: flex;
     justify-content: center;
     padding: 20px;
-    width: 40%;
+    width: 30%;
     height: 60%;
-    background-color: rgb(65, 65, 65);
+    background-color: rgb(133, 133, 133);
 }
 
 .FiltreModalDiv {
@@ -673,7 +683,9 @@ display: none;
     width: 80%;
     height: auto;
 }
+.MyRestaurantTableDiv{
 
+}
 /*RESTAURANT MENU CSS*/
 
 .RestaurantMenuDiv {
@@ -745,52 +757,135 @@ display: none;
 }
 
 .RestaurantMenuStateImg {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: auto;
     background-position: center;
 }
 
 .RestaurantMenuStateImg img {
-    width: 120px;
+    width: 100%;
     height: 120px;
     object-fit: cover !important;
 }
 
 .RestaurantMenuStateTitle {
     font-size: 15px;
+    margin: 10px 0 10px 0;
 }
 
 .RestaurantMenuStateFiyat {
     color: rgb(46, 46, 46);
     font-size: 15px;
+    margin: 10px 0 10px 0;
 }
 
-.RestaurantMenuStatePut {
+.RestaurantMenuStateButton {
     width: 100%;
     height: 32px;
     line-height: 35px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 10px 0;
 }
 
-.MenuButton {
-    width: 120px;
+.MenuButtonPut{
+    width: 80px;
     height: 30px;
     line-height: 30px;
+    border-radius: 5px;
     color: white;
     background-color: rgb(28, 156, 28);
     border: none;
     box-shadow: 1px 1px 1px 1px rgba(19, 131, 19, 0.719);
 }
 
-.MenuButton:hover {
+.MenuButtonPut:hover {
     transition: .5s ease-in-out;
     background-color: rgba(28, 156, 28, 0.575);
+}
+.MenuButtonDel{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(161, 8, 8);
+    border: none;
+    box-shadow: 1px 1px 1px 1px rgba(19, 131, 19, 0.719);
+}
+
+.MenuButtonDel:hover {
+    transition: .5s ease-in-out;
+    background-color: rgba(161, 8, 8, 0.699);
+}
+
+.MenuDelModal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.288);
+}
+.MenuDelModalPost{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 30%;
+    height: 16%;
+    background-color: rgb(133, 133, 133);
+    border-radius: 10px;
+}
+.MenuDelDiv{
+    width: 100%;
+}
+.MenuDelHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.MenuDelButton{
+    width: 30px;
+    height: 30px;
+    border: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 3px;
+}
+.MenuDelButton:hover{
+    transition: .2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.712);
+}
+.MenuDelHeader p {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.MenuDelFooterButton{
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.466);
+}
+.MenuDelFooterButton:hover{
+    transition: .2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.747);
 }
 
 /*RESTAURANT VİEW CSS */
 
 .RestaurantViewDiv {
     width: 99vw !important;
-    height: auto;
+    height:130vh;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 
 }

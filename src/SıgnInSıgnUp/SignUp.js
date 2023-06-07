@@ -1,4 +1,4 @@
-import { Checkbox, TextField } from "@mui/material";
+import { Checkbox, FormControl, InputLabel, OutlinedInput, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -6,6 +6,10 @@ import { axiosInstance, setApiToken } from "../axios.util";
 import { userActions } from "../redux/slice/userSlice";
 import* as storage from "../storage.helper"
 import alertify from "alertifyjs";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 
 
 
@@ -22,6 +26,14 @@ function KullaniciSignUp() {
   const [form, setForm] = useState({ ...initialForm });
 
   const [count, setCount] = useState(0);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const dispatch = useDispatch();
   const onChangeText = (value, key) => {
@@ -128,16 +140,28 @@ function KullaniciSignUp() {
           value={form.kayitYapTelefon}
           onChange={(e) => onChangeText(e.target.value, "kayitYapTelefon")}
         />
-        <TextField
-          id="Password"
-          type="password"
-          autoComplete="current-password"
-          label="Parolanızı Giriniz"
-          variant="outlined"
-          className="kayitYapInput"
-          value={form.kayitYapParola}
-          onChange={(e) => onChangeText(e.target.value, "kayitYapParola")}
-        />
+        <FormControl sx={{ mt: 4, width: '52.5ch' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Parola</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            value={form.kayitYapParola}
+            onChange={(e) => onChangeText(e.target.value, "kayitYapParola")}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
         <label className="kayitYapRolLabel"><Checkbox className="kayitYapRolCheck" type="checkbox" onClick={tiklama} />Restoran İşletmecisiyim</label>
 
         <button className="kayitYapButton" type="submit" onClick={register} >Kayıt Ol</button>

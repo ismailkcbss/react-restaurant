@@ -1,8 +1,8 @@
 import Navbar from './Navbar';
-import Footer from '../Footer/Footer';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import alertify from 'alertifyjs';
+import { axiosInstance } from '../axios.util';
 
 
 function Iletisim() {
@@ -17,7 +17,8 @@ function Iletisim() {
 
     const [form, setForm] = useState({ ...initialForm });
 
-    const dispatch = useDispatch();
+
+
     const handleChangeText = (value, key) => {
         setForm({
             ...form,
@@ -25,11 +26,22 @@ function Iletisim() {
         })
     }
 
-    const handleClick = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-    
+        try {
+            const { data } = await axiosInstance.post(`Iletisim`, {
+                fullname: form.iletisimAdSoyad,
+                mail: form.iletisimEmail,
+                phone: form.iletisimTelefon,
+                konu: form.iletisimKonu,
+                desc: form.iletisimMesaj,
+            })
+            alertify.success('Mesaj Gönderildi...');
+        } catch (error) {
+            alertify.error(error.response.data.message);
+        }
         setForm({ ...initialForm });
-      }
+    }
     return (
 
         <div className="IletisimDiv">
@@ -62,6 +74,7 @@ function Iletisim() {
                     <TextField
                         id="telefon"
                         autoComplete="telefon"
+                        type='number'
                         label="Telefon Numarası"
                         placeholder='(500)-000-0000'
                         variant="outlined"
@@ -92,12 +105,11 @@ function Iletisim() {
                         onChange={(e) => handleChangeText(e.target.value, "iletisimMesaj")}
 
                     />
-                    <button className="IletisimButton" onClick={handleClick}  >Formu Gönder</button>
+                    <button className="IletisimButton" onClick={handleSubmit}  >Formu Gönder</button>
 
                 </form>
 
             </div>
-            <Footer />
         </div>
     );
 }
