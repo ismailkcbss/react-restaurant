@@ -5,16 +5,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
-import SliderCarousel from './SliderCarouselPost';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import IletisimForm1 from '../img/IletisimForm1.jpg';
 import KapakFoto1 from '../img/KapakFoto1.jpg';
 import RestaurantListe1 from '../img/RestaurantListe1.jpg';
-import HasanUsta1 from '../img/HasanUsta1.png';
-import ZekiUsta1 from '../img/ZekiUsta1.jpg';
-import EyvanKebap1 from '../img/EyvanKebap1.png';
-
+import BlogFot from './BlogFot';
 
 
 
@@ -42,43 +38,14 @@ const featuredPosts = [
     imageLabel: 'RestaurantListe',
   },
 ];
-const sliderCarouselPost = [
-  {
-    id: 1,
-    title: 'Hasan Usta Kebap Salonu',
-    description: 'Herkesi Restaurantlarımıza Bekliyoruz',
-    image: HasanUsta1,
-    imageText: 'HasanUsta',
-    linkText:'Restaurantı Görüntülemek İçin Tıklayınız',
-  },
-  {
-    id: 2,
-    title: 'Zeki Ustanın Yeri',
-    description: 'Herkesi Restaurantlarımıza Bekliyoruz',
-    image: ZekiUsta1,
-    imageText: 'ZekiUsta',
-    linkText:'Restaurantı Görüntülemek İçin Tıklayınız',
-  },
-  {
-    id: 3,
-    title: 'Eyvan Kebap Salonu',
-    description: 'Herkesi Restaurantlarımıza Bekliyoruz',
-    image: EyvanKebap1,
-    imageText: 'EyvanKebap',
-    linkText:'Restaurantı Görüntülemek İçin Tıklayınız',
-  },
-]
-
 
 
 const theme = createTheme();
 
 export default function Blog() {
 
-
   return (
     <div>
-
       <Navbar />
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -91,11 +58,9 @@ export default function Blog() {
               ))}
             </Grid>
             <Grid container spacing={4}>
-              {sliderCarouselPost.map((post) => (
-                <SliderCarousel key={post.id} post={post} />
-              ))}
+              <BlogFot />
             </Grid>
-            
+
           </main>
         </Container>
       </ThemeProvider>

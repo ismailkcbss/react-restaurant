@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 ul {
@@ -160,15 +161,12 @@ display: none;
 /*FOOTER CSS*/
 .FooterDiv {
     width: 100%;
-    height: 150px;
+    height: 120px;
     background-color: rgba(44, 83, 122, 0.705);
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
     display: flex;
     justify-content: space-between;
     position: relative;
     bottom: 0;
-    clear: both;
 }
 
 .SocialMedia {
@@ -303,6 +301,60 @@ display: none;
 }
 
 /*HAKKIMIZDA SAYFASI CSS*/
+.BlogFot {
+    width: 100%;
+    height: auto;
+}
+
+.BlogFotSag {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 100px;
+}
+
+.BlogFotTitle {
+    flex-basis: 50%;
+    font-size: 18px;
+    font-family: cursive;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.BlogFotTitle h3{
+    margin-bottom: 50px;
+}
+.BlogFotSolOrta{
+    flex-basis: 50%;
+    font-size: 18px;
+    font-family: cursive;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+}
+
+.BlogFot button{
+    border: none;
+    background-color: transparent;
+    color: rgb(30, 109, 173);
+}
+.BlogFotImg {
+    width: 350px;
+    height: 350px;
+}
+
+.BlogFotImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.BlogFotSol {
+    display: flex;    
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 100px;
+}
 
 .HakkimizdaDiv {
     width: 100% !important;
@@ -457,7 +509,7 @@ display: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-   
+
 }
 
 .RestaurantlarHeader {
@@ -503,18 +555,22 @@ display: none;
     border: 2px solid rgba(235, 235, 235, 0.322);
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.829);
-    height: auto;;
+    height: auto;
+    ;
 }
-.RestaurantStateDiv:hover{
+
+.RestaurantStateDiv:hover {
     transition: .5s ease-in-out;
     cursor: pointer;
-    background-color:rgba(235, 235, 235, 0.322) ;
+    background-color: rgba(235, 235, 235, 0.322);
     box-shadow: 2.5px 2.5px 2.5px 2.5px rgba(0, 0, 0, 0.5);
 }
-.RestaurantStateDiv:hover .RestaurantTitle{
+
+.RestaurantStateDiv:hover .RestaurantTitle {
     transition: .3s ease-in-out;
-    color:rgba(173, 173, 173, 0.836) ;
+    color: rgba(173, 173, 173, 0.836);
 }
+
 .RestaurantImg {
     width: 250px;
     height: 330px;
@@ -608,7 +664,7 @@ display: none;
     color: white;
 }
 
-.FiltreModalFooter {}
+
 
 .FiltreModalFooterButton {
     width: 150px;
@@ -630,7 +686,7 @@ display: none;
 
 .MyRestaurantDiv {
     width: 100%;
-    height: auto;
+    height: 300px;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 
 }
@@ -671,7 +727,6 @@ display: none;
     height: auto;
     display: flex;
     justify-content: center;
-    text-align: center;
 }
 
 
@@ -683,9 +738,7 @@ display: none;
     width: 80%;
     height: auto;
 }
-.MyRestaurantTableDiv{
 
-}
 /*RESTAURANT MENU CSS*/
 
 .RestaurantMenuDiv {
@@ -750,9 +803,9 @@ display: none;
     height: auto;
     margin: 20px;
     padding: 15px;
-    border: 2px solid rgba(44, 83, 122, 0.829);
+    border: 2px solid rgba(192, 192, 192, 0.911);
     border-radius: 5px;
-    background-color: rgba(44, 83, 122, 0.829);
+    background-color: rgba(233, 233, 233, 0.829);
     box-shadow: 4px 4px 4px rgba(139, 139, 139, 0.74);
 }
 
@@ -788,7 +841,7 @@ display: none;
     margin: 30px 0 10px 0;
 }
 
-.MenuButtonPut{
+.MenuButtonPut {
     width: 80px;
     height: 30px;
     line-height: 30px;
@@ -803,7 +856,8 @@ display: none;
     transition: .5s ease-in-out;
     background-color: rgba(28, 156, 28, 0.575);
 }
-.MenuButtonDel{
+
+.MenuButtonDel {
     width: 80px;
     height: 30px;
     line-height: 30px;
@@ -819,7 +873,7 @@ display: none;
     background-color: rgba(161, 8, 8, 0.699);
 }
 
-.MenuDelModal{
+.MenuDelModal {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -830,7 +884,8 @@ display: none;
     left: 0;
     background-color: rgba(0, 0, 0, 0.288);
 }
-.MenuDelModalPost{
+
+.MenuDelModalPost {
     display: flex;
     justify-content: center;
     padding: 20px;
@@ -839,16 +894,19 @@ display: none;
     background-color: rgb(133, 133, 133);
     border-radius: 10px;
 }
-.MenuDelDiv{
+
+.MenuDelDiv {
     width: 100%;
 }
-.MenuDelHeader{
+
+.MenuDelHeader {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
-.MenuDelButton{
+
+.MenuDelButton {
     width: 30px;
     height: 30px;
     border: none;
@@ -856,17 +914,19 @@ display: none;
     font-weight: bold;
     border-radius: 3px;
 }
-.MenuDelButton:hover{
+
+.MenuDelButton:hover {
     transition: .2s ease-in-out;
     background-color: rgba(255, 255, 255, 0.712);
 }
+
 .MenuDelHeader p {
     font-weight: bold;
     font-size: 20px;
     color: white;
 }
 
-.MenuDelFooterButton{
+.MenuDelFooterButton {
     width: 150px;
     height: 30px;
     line-height: 30px;
@@ -876,7 +936,8 @@ display: none;
     border: none;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.466);
 }
-.MenuDelFooterButton:hover{
+
+.MenuDelFooterButton:hover {
     transition: .2s ease-in-out;
     background-color: rgba(255, 255, 255, 0.747);
 }
@@ -885,7 +946,7 @@ display: none;
 
 .RestaurantViewDiv {
     width: 99vw !important;
-    height:130vh;
+    height: 130vh;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 
 }
@@ -905,29 +966,17 @@ display: none;
 }
 
 .RestaurantViewBody {
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    flex-wrap: wrap;
-}
-
-.RestaurantViewBodySol {
-    margin: 10px;
-    padding: 10px;
-    background-color: rgba(92, 92, 168, 0.589);
-}
-
-.RestaurantViewBodySag {
-    margin: 10px;
-    padding: 10px;
-    background-color: rgba(179, 79, 79, 0.555);
+    justify-content: space-around;
 }
 
 .RestaurantViewMenu {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 
 }
 
@@ -948,4 +997,53 @@ display: none;
 .RestaurantViewStateImg img {
     width: 100%;
     height: 100%;
+}
+
+.MyRestaurantTableDiv {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.MyRestaurantTableImg {
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+}
+
+.MyRestaurantTableDiv img {
+    width: 350px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.MyRestaurantTableDiv table {
+    margin-right: 35px;
+}
+
+.MyRestaurantTableDiv table tbody tr {
+    border-bottom: 1px solid rgba(161, 161, 161, 0.253);
+}
+
+.MyRestaurantTableDiv table thead th:first-of-type {
+    font-size: 30px;
+    font-family: cursive;
+    padding-bottom: 30px;
+}
+
+.MyRestaurantTableDiv table tbody th {
+    font-size: 17px;
+    font-family: cursive;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.MyRestaurantTableDiv table tbody td {
+    padding-right: 5px;
+}
+
+.MyRestaurantTableDiv .TableCift {
+    background-color: rgba(202, 202, 202, 0.253);
 }

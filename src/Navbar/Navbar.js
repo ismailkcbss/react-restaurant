@@ -23,9 +23,6 @@ function Navbar() {
     const handleClickMyRestoran = () => {
         history.push('/MyRestaurant');
     }
-    const handleClickHakkimizda = () => {
-        history.push('/Hakkimizda');
-    }
     const handleClickIletisim = () => {
         history.push('/Iletisim');
     }
@@ -66,11 +63,6 @@ function Navbar() {
                     )
                 }
 
-                <li>
-                    <button className="NavbarButton" onClick={handleClickHakkimizda}>
-                        Hakkımızda
-                    </button>
-                </li>
                 <li>
                     <button className="NavbarButton" onClick={handleClickIletisim}>
                         İletişim

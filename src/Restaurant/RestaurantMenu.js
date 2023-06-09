@@ -96,6 +96,7 @@ function RestaurantMenu() {
                 img: newFotoUrl || foto,
                 price: Number(form.MenuPrice),
             })
+            history.push('/MyRestaurant');
             dispatch(restaurantMenuActions.set(data));
         } catch (error) {
             alertify.error(error.response.data.message);

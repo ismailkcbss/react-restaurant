@@ -8,6 +8,7 @@ import { restaurantActions } from '../redux/slice/restaurantSlice';
 import { useHistory } from 'react-router-dom';
 import RestaurantMenuState from './RestaurantMenuState';
 import { restaurantMenuActions } from '../redux/slice/restaurantMenuSlice';
+import MyRestaurantTable from './MyRestaurantTable';
 
 
 
@@ -78,9 +79,7 @@ export default function MyRestaurant() {
           <button onClick={handleClickMenu} className='MyRestaurantHeaderButton'>Restaurant Menu Ekleme</button>
         </div>
         <div className='MyRestaurantContainer'>
-          {
-            <img src={restaurantState.restaurant.img} />
-          }
+          <MyRestaurantTable restaurant={restaurant} />
         </div>
         <br /><br /><br />
         <p style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "cursive", paddingLeft: "10px" }}>Menu</p>
@@ -93,7 +92,6 @@ export default function MyRestaurant() {
         </div>
 
       </div>
-      <Footer />
     </div>
   )
 }

@@ -7,7 +7,6 @@ import Iletisim from './Navbar/Iletisim';
 import Restaurantlar from './Restaurant/Restaurantlar';
 import PasswordReset from './SıgnInSıgnUp/PasswordReset';
 import Blog from './Anasayfa/Blog';
-import Hakkimizda from './Navbar/Hakkimizda';
 import RestaurantRegistration from './SıgnInSıgnUp/RestaurantRegistration';
 import * as storage from './storage.helper'
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,7 +58,6 @@ function App() {
                 <Route exact path='/PasswordResetDesc' component={PasswordResetDesc} />
                 <Route exact path='/Iletisim' component={Iletisim} />
                 <Route exact path='/Restaurantlar' component={Restaurantlar} />
-                <Route exact path='/Hakkimizda' component={Hakkimizda} />
                 <Route exact path='/RestaurantRegistration' component={RestaurantRegistration} />
                 <Route exact path='/RestaurantView/:id' component={RestaurantView} />
                 <Route exact path='/RestaurantMenu' component={RestaurantMenu} />

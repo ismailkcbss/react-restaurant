@@ -6,6 +6,7 @@ import { axiosInstance } from "../axios.util";
 import alertify from "alertifyjs";
 import Loading from "./Loading";
 import RestaurantMenuState from "./RestaurantMenuState";
+import RestaurantTable from "./RestaurantTable";
 
 
 function RestaurantView() {
@@ -55,17 +56,9 @@ function RestaurantView() {
                             <p> {Views[0].name}</p>
                         </div>
                         <div className="RestaurantViewBody">
-                            <div className="RestaurantViewBodySol">
-                                {Views[0].description}
-                            </div>
-                            <div className="RestaurantViewBodySag">
-                                {Views[0].address}
-                            </div>
+                            <RestaurantTable Views={Views} />
                         </div>
-                        <div>
-                            <img src={Views[0].img} />
-                        </div>
-                        <p style={{fontSize:"20px",fontWeight:"bold",fontFamily:"cursive",paddingLeft:"10px",marginTop:"50px"}}>Restaurant Menu</p>
+                        <p style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "cursive", paddingLeft: "10px", marginTop: "50px" }}>Restaurant Menu</p>
                         <div className="RestaurantViewMenu">
                             {
                                 restaurantMenuList.map((item) => (
