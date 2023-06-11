@@ -59,15 +59,17 @@ function RestaurantView() {
                             <RestaurantTable Views={Views} />
                         </div>
                         <p style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "cursive", paddingLeft: "10px", marginTop: "50px" }}>Restaurant Menu</p>
-                        <div className="RestaurantViewMenu">
-                            {
-                                restaurantMenuList.map((item) => (
-                                    <RestaurantMenuState key={item.id} item={item} />
-                                ))
-                            }
 
+                        <div className="RestaurantViewMenuDiv">
+                            <div className="RestaurantViewMenu">
+                                {
+                                    restaurantMenuList.map((item) => (
+                                        <RestaurantMenuState key={item.id} item={item} />
+                                    ))
+                                }
+
+                            </div>
                         </div>
-
                     </div>
                 ) : (
                     <Loading />

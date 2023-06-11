@@ -29,7 +29,6 @@ function RestaurantMenu() {
 
 
     const restaurantId = restaurantState.restaurant.id;
-    console.log(restaurantId);
 
 
     const history = useHistory();
@@ -122,6 +121,7 @@ function RestaurantMenu() {
     
         }
     }
+
 
     useEffect(() => {
         RestaurantMenuGet();

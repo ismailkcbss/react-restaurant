@@ -26,15 +26,16 @@ function Iletisim() {
         })
     }
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const { data } = await axiosInstance.post(`Iletisim`, {
-                fullname: form.iletisimAdSoyad,
-                mail: form.iletisimEmail,
+            const { data } = await axiosInstance.post(`/user/contact`, {
+                fullName: form.iletisimAdSoyad,
+                email: form.iletisimEmail,
                 phone: form.iletisimTelefon,
-                konu: form.iletisimKonu,
-                desc: form.iletisimMesaj,
+                subject: form.iletisimKonu,
+                description: form.iletisimMesaj,
             })
             alertify.success('Mesaj Gönderildi...');
         } catch (error) {
@@ -64,21 +65,25 @@ function Iletisim() {
                     <TextField
                         id="email"
                         autoComplete="email"
-                        label="E-mail / Telefon Numarası"
+                        label="E-Mail"
                         variant="outlined"
                         className="IletisimInput"
+                        maxlength="10"
                         required
                         value={form.iletisimEmail}
                         onChange={(e) => handleChangeText(e.target.value, "iletisimEmail")}
                     />
                     <TextField
                         id="telefon"
-                        autoComplete="telefon"
+                        autoComplete="tel"
                         type='number'
                         label="Telefon Numarası"
-                        placeholder='(500)-000-0000'
+                        placeholder='Başında Sıfır Olmadan Boşluksuz yazınız'
                         variant="outlined"
                         className="IletisimInput"
+                        onInput = {(e) =>{
+                            e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
+                        }}
                         value={form.iletisimTelefon}
                         onChange={(e) => handleChangeText(e.target.value, "iletisimTelefon")}
                     />

@@ -12,7 +12,7 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
             if (userState.user.role === 'restaurant') {
                 return <Component {...props} />
             } else {
-                return <Redirect to={{ pathname: '/' }}/>
+                return <Redirect to={{ pathname: '/MyRestaurant' }}/>
     }
 
         }}

@@ -50,7 +50,7 @@ function BlogFot() {
                     </p>
                 </div>
                 <div className="BlogFotImg">
-                    <img src="https://media.istockphoto.com/id/1018141890/photo/two-empty-wine-glasses-sitting-in-a-restaurant-on-a-warm-sunny-afternoon.jpg?s=612x612&w=0&k=20&c=OccJv1oKWSTDqJ6Irw7iW1NEbL0muU2ylqP3EOhOyEg=" alt="blogImg" />
+                    <img src="https://firebasestorage.googleapis.com/v0/b/restaurant-271d8.appspot.com/o/t%C3%BCrkiye%20haritas%C4%B1.png?alt=media&token=2606ab8a-5aa7-4f3e-b76f-6fdb37eb837a" alt="blogImg" />
                 </div>
             </div>
 

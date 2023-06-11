@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import RestaurantMenuState from './RestaurantMenuState';
 import { restaurantMenuActions } from '../redux/slice/restaurantMenuSlice';
 import MyRestaurantTable from './MyRestaurantTable';
+import { InstallDesktop } from '@mui/icons-material';
 
 
 
@@ -16,8 +17,6 @@ import MyRestaurantTable from './MyRestaurantTable';
 export default function MyRestaurant() {
 
   const userState = useSelector((state) => state.user);
-
-  const restaurantState = useSelector((state) => state.restaurant);
 
   const [restaurantMenuList, setRestaurantMenuList] = useState([]);
 
@@ -63,7 +62,6 @@ export default function MyRestaurant() {
     }
   }, [restaurant])
 
-
   return (
     <div className='MyRestaurantDiv'>
       <Navbar />
@@ -82,13 +80,15 @@ export default function MyRestaurant() {
           <MyRestaurantTable restaurant={restaurant} />
         </div>
         <br /><br /><br />
-        <p style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "cursive", paddingLeft: "10px" }}>Menu</p>
-        <div className='MyRestaurantMenu'>
-          {
-            restaurantMenuList.map((item) => (
-              <RestaurantMenuState key={item.id} item={item} />
-            ))
-          }
+        <p className='MyRestaurantMenuTitle'>Menu</p>
+        <div className='MyRestaurantMenuDiv'>
+          <div className='MyRestaurantMenu'>
+            {
+              restaurantMenuList.map((item) => (
+                <RestaurantMenuState setList={setRestaurantMenuList} key={item.id} item={item} />
+              ))
+            }
+          </div>
         </div>
 
       </div>

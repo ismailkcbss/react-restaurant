@@ -1,19 +1,13 @@
 import { Checkbox, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { useEffect, useState } from "react";
-import { axiosInstance } from '../axios.util';
-import alertify from "alertifyjs";
-
 
 
 function RestaurantFiltreModal(props) {
 
-    const { setVisible } = props;
-    const { setRestaurantList } = props;
+    const { setVisible, handleFilter, filter, setFilter } = props;
 
-
-    const [isWifi, setIsWifi] = useState(false);
-    const [isType, setisType] = useState("");
-    const [filtreState, setfiltreState] = useState([]);
+    const [isWifi, setIsWifi] = useState(filter.isWifi);
+    const [isType, setisType] = useState(filter.type);
 
     const handleClick = () => {
         setVisible(false);
@@ -23,24 +17,6 @@ function RestaurantFiltreModal(props) {
         setisType(event.target.value);
     }
 
-    const handleSubmit = async () => {
-        let wifiQueryUrl = "";
-        if (isWifi) {
-            wifiQueryUrl = "wifi=yes&";
-        }
-        try {
-            const { data } = await axiosInstance.get(`/restaurant?offset=0&limit=8&${wifiQueryUrl}type=${isType}`)
-            setVisible(false)
-            setRestaurantList(data.rows)
-        } catch (error) {
-            alertify.error(error.response.data.message);
-        }
-    }
-
-    useEffect(() => {
-
-    }, [])
-
     return (
         <div className="FiltreModalDiv">
             <div className="FiltreModalHeader">
@@ -49,7 +25,7 @@ function RestaurantFiltreModal(props) {
             </div>
             <div className="FiltreModalContainer">
                 <div>
-                    <Checkbox value={isWifi} onChange={(e) => setIsWifi(e.target.checked)} />Wifi Olsun
+                    <Checkbox checked={isWifi} onChange={(e) => setIsWifi(e.target.checked)} />Wifi Olsun
                 </div>
                 <div> <p>Restaurant Türünü Seçiniz</p>
                     <FormControl>
@@ -67,10 +43,11 @@ function RestaurantFiltreModal(props) {
 
             </div>
             <div className="FiltreModalFooter">
-                <button onClick={handleSubmit} className="FiltreModalFooterButton">Filtreleme Yap</button>
+                <button onClick={() =>handleFilter(isWifi,isType)} className="FiltreModalFooterButton">Filtreleme Yap</button>
             </div>
 
         </div>
+
     );
 }
 

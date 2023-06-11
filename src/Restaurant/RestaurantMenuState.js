@@ -1,23 +1,32 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import MyRestaurantMenuDel from "./MyRestaurantMenuDel";
+import alertify from "alertifyjs";
+import { axiosInstance } from "../axios.util";
 
 function RestaurantMenuState(props) {
 
-    const { item } = props;
+    const { item, setList } = props;
 
     const userState = useSelector((state) => state.user);
     const history = useHistory();
 
-    const [visible, setVisible] = useState(false);
-
     const handleClickPut = () => {
         history.push(`/RestaurantMenu/${item.id}`);
     }
-    const handleClickDel = () => {
-        setVisible(true);
-        history.push(`/MyRestaurant`);
+
+    const RestaurantMenuDelete = async () => {
+        if (item.id) {
+            try {
+                const { data } = await axiosInstance.delete(`/menu/${item.id}`)
+                setList((prev) => {
+                    const newPrev = prev.filter((each) => each.id !== item.id);
+                    return newPrev;
+                })
+                alertify.success("Seçili Menü Silindi");
+            } catch (error) {
+                alertify.error(error.response.data.message);
+            }
+        }
     }
 
     return (
@@ -26,11 +35,11 @@ function RestaurantMenuState(props) {
                 <img src={item.img} alt="Img" />
             </div>
             <div className="RestaurantMenuStateTitle">
-                <span style={{ whiteSpace: "nowrap", fontSize: "15px", fontWeight: "bold", color: "black", paddingRight: "10px" }}>Menu Adı:</span>
-                <span style={{ whiteSpace: "nowrap" }}>{item.title}</span>
+                <p style={{ whiteSpace: "noWrap", fontSize: "17px", fontWeight: "bold", color: "black", fontFamily:"cursive",marginBottom:"0"}}>Menu Adı:</p>
+                <p style={{ whiteSpace: "noWrap", fontFamily:"cursive"}}>{item.title}</p>
             </div>
             <div className="RestaurantMenuStateFiyat">
-                <span style={{ fontSize: "15px", fontWeight: "bold", color: "black", paddingRight: "10px" }}>Menu Fiyat (TL):</span>{item.price}
+                <span style={{ fontFamily:"cursive", fontSize: "17px", fontWeight: "bold", color: "black", paddingRight: "10px" }}>Menu Fiyat :</span>₺ {item.price}
             </div>
 
             {
@@ -39,7 +48,7 @@ function RestaurantMenuState(props) {
                         <button className="MenuButtonPut" onClick={handleClickPut}>
                             Düzenle
                         </button>
-                        <button className="MenuButtonDel" onClick={handleClickDel}>
+                        <button className="MenuButtonDel" onClick={RestaurantMenuDelete}>
                             Sil
                         </button>
                     </div>
@@ -47,19 +56,6 @@ function RestaurantMenuState(props) {
                     ""
                 )
             }
-            {visible ? (
-                <div className="MenuDelModal">
-                    <div className="MenuDelModalPost">
-                        <MyRestaurantMenuDel setVisible={setVisible} />
-                    </div>
-                </div>
-            ) : (
-                null
-            )
-
-            }
-
-
         </div>
     );
 }

@@ -300,7 +300,7 @@ display: none;
     cursor: pointer;
 }
 
-/*HAKKIMIZDA SAYFASI CSS*/
+/*BLOG SAYFASI CSS*/
 .BlogFot {
     width: 100%;
     height: auto;
@@ -339,8 +339,8 @@ display: none;
     color: rgb(30, 109, 173);
 }
 .BlogFotImg {
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
 }
 
 .BlogFotImg img {
@@ -356,70 +356,6 @@ display: none;
     margin-bottom: 100px;
 }
 
-.HakkimizdaDiv {
-    width: 100% !important;
-    height: 100vh !important;
-}
-
-.HakkimizdaBody {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 80px;
-}
-
-.HakkimizdaUst {
-    width: 1000px;
-    height: 30%;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.HakkimizdaOrta {
-    width: 900px;
-    height: 30%;
-    margin-bottom: 100px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.HakkimizdaOrta ul {
-    list-style: outside;
-}
-
-.HakkimizdaAlt {
-    height: 30%;
-    margin-bottom: 30px;
-}
-
-.HakkimizdaSikcaSorularDiv {
-    width: 800px !important;
-    height: 450px !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.HakkimizdaSikcaSorularTextarea {
-    width: 90% !important;
-    height: 90% !important;
-}
-
-.HakkimizdaSikcaSorular {
-    background-color: rgba(231, 231, 231, 0.801) !important;
-}
-
-.HakkimizdaSikcaSorular:hover {
-    transition: .5s;
-    background-color: rgba(231, 231, 231, 0.623) !important;
-}
-
-.HakkimizdaSikcaSorularText {
-    color: rgb(0, 0, 0);
-    background-color: rgba(209, 209, 209, 0.801) !important;
-}
 
 /*Iletisim CSS Sayfası*/
 .IletisimDiv {
@@ -449,7 +385,9 @@ display: none;
     width: 100%;
     margin-top: 30px !important;
 }
-
+.FormDiv input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
 /*ANASAYFA CSS SEKMESİ*/
 
 .Blog {
@@ -626,7 +564,7 @@ display: none;
     justify-content: center;
     padding: 20px;
     width: 30%;
-    height: 60%;
+    height: 40%;
     background-color: rgb(133, 133, 133);
 }
 
@@ -686,14 +624,14 @@ display: none;
 
 .MyRestaurantDiv {
     width: 100%;
-    height: 300px;
+    height: 100%;
     background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 
 }
 
 .MyRestaurantBody {
     width: 100%;
-    height: auto;
+    height: 100%;
     padding-top: 90px;
 }
 
@@ -729,13 +667,29 @@ display: none;
     justify-content: center;
 }
 
+.MyRestaurantMenuTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: cursive;
 
+}
+.MyRestaurantMenuDiv{
+    width: 100%;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
 .MyRestaurantMenu {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
-    width: 80%;
+    width: 70%;
     height: auto;
 }
 
@@ -764,7 +718,11 @@ display: none;
     align-items: center;
 
 }
-
+.RestaurantMenuDiv img {
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+}
 .RestaurantMenuInput {
     width: 350px;
     margin-top: 20px !important;
@@ -823,7 +781,7 @@ display: none;
 
 .RestaurantMenuStateTitle {
     font-size: 15px;
-    margin: 10px 0 10px 0;
+    margin-top: 10px;
 }
 
 .RestaurantMenuStateFiyat {
@@ -971,13 +929,19 @@ display: none;
     align-items: center;
     justify-content: space-around;
 }
-
-.RestaurantViewMenu {
+.RestaurantViewMenuDiv{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-
+    align-items: center;
+}
+.RestaurantViewMenu {
+    width: 80%;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .RestaurantViewStateDiv {

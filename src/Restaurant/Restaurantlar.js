@@ -18,13 +18,26 @@ function Restaurantlar() {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState("");
   const [visible, setVisible] = useState(false);
-
-
+  const [filter, setFilter] = useState({
+    isWifi: false,
+    type: -1,
+  });
   const Restaurant = async () => {
+
+    let wifiQueryUrl = "";
+    let typeQueryUrl = "";
+    debugger;
+    if (filter.isWifi) {
+      wifiQueryUrl = "wifi=yes";
+    }
+    if(filter.type !== -1){
+      typeQueryUrl = `type=${filter.type}`;
+    }
     try {
-      const { data } = await axiosInstance.get(`/restaurant?limit=8&offset=${(page - 1) * 8}`);
+      const { data } = await axiosInstance.get(`/restaurant?limit=6&offset=${(page - 1) * 6}&${wifiQueryUrl}&${typeQueryUrl}`);
       setRestaurantList(data.rows);
       setCount(data.count);
+      console.log(data.count);
     } catch (error) {
       alertify.error(error.response.data.message);
     }
@@ -44,6 +57,26 @@ function Restaurantlar() {
   }
 
 
+  const handleFilter = async (isWifi, type) => {
+    let wifiQueryUrl = "";
+    let typeQueryUrl = "";
+    debugger;
+    if (isWifi) {
+      wifiQueryUrl = "wifi=yes";
+    }
+    if(type !== -1){
+      typeQueryUrl = `type=${type}`;
+    }
+    try {
+      const { data } = await axiosInstance.get(`/restaurant?offset=0&limit=6&${wifiQueryUrl}&${typeQueryUrl}`);
+      setFilter({isWifi,type});
+      setRestaurantList(data.rows)
+      setCount(data.count)
+      setVisible(false)
+    } catch (error) {
+      alertify.error(error.response.data.message);
+    }
+  }
 
   return (
     <div className="RestaurantlarDiv">
@@ -57,7 +90,11 @@ function Restaurantlar() {
       {visible ? (
         <div className="FiltrelemeModal">
           <div className="FiltrelemeModalPost">
-            <RestaurantFiltreModal setRestaurantList={setRestaurantList} setVisible={setVisible} />
+            <RestaurantFiltreModal 
+              handleFilter={handleFilter} 
+              setVisible={setVisible}
+              filter={filter}
+            />
           </div>
         </div>
       ) : (
@@ -72,7 +109,7 @@ function Restaurantlar() {
       </div>
       <div>
         <Stack spacing={2}>
-          <Pagination count={Math.ceil(count / 8)} value={page} onChange={handlePageNum} />
+          <Pagination count={Math.ceil(count / 6)} value={page} onChange={handlePageNum} />
         </Stack>
       </div>
     </div>
